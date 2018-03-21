@@ -1,0 +1,13 @@
+#+BEGIN_COMMENT
+.. title: Debug Information
+.. slug: debug-information
+.. date: 2018-03-21 16:50:57 UTC+02:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+* Developer resources
+- [[https://llvm.org/docs/SourceLevelDebugging.html][Source Level Debugging with LLVM]] -llvm docs
