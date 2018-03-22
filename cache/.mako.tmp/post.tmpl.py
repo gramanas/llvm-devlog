@@ -5,9 +5,9 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1521644070.9661531
+_modified_time = 1521745988.010697
 _enable_loop = True
-_template_filename = '/usr/lib/python3.6/site-packages/nikola/data/themes/bootstrap3/templates/post.tmpl'
+_template_filename = 'themes/blogtxt/templates/post.tmpl'
 _template_uri = 'post.tmpl'
 _source_encoding = 'utf-8'
 _exports = ['extra_head', 'content', 'sourcelink']
@@ -29,9 +29,6 @@ def _mako_generate_namespaces(context):
     ns = runtime.TemplateNamespace('comments', context._clean_inheritance_tokens(), templateuri='comments_helper.tmpl', callables=None,  calling_uri=_template_uri)
     context.namespaces[(__name__, 'comments')] = ns
 
-    ns = runtime.TemplateNamespace('math', context._clean_inheritance_tokens(), templateuri='math_helper.tmpl', callables=None,  calling_uri=_template_uri)
-    context.namespaces[(__name__, 'math')] = ns
-
 def _mako_inherit(template, context):
     _mako_generate_namespaces(context)
     return runtime._inherit_from(context, 'base.tmpl', _template_uri)
@@ -39,39 +36,32 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def content():
-            return render_content(context._locals(__M_locals))
+        title = context.get('title', UNDEFINED)
+        def sourcelink():
+            return render_sourcelink(context._locals(__M_locals))
+        permalink = context.get('permalink', UNDEFINED)
+        date_format = context.get('date_format', UNDEFINED)
+        helper = _mako_get_namespace(context, 'helper')
         post = context.get('post', UNDEFINED)
-        parent = context.get('parent', UNDEFINED)
+        comments = _mako_get_namespace(context, 'comments')
+        pheader = _mako_get_namespace(context, 'pheader')
         messages = context.get('messages', UNDEFINED)
         def extra_head():
             return render_extra_head(context._locals(__M_locals))
-        pheader = _mako_get_namespace(context, 'pheader')
-        math = _mako_get_namespace(context, 'math')
-        show_sourcelink = context.get('show_sourcelink', UNDEFINED)
-        def sourcelink():
-            return render_sourcelink(context._locals(__M_locals))
-        comments = _mako_get_namespace(context, 'comments')
-        helper = _mako_get_namespace(context, 'helper')
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
+        def content():
+            return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
         __M_writer('\n')
         __M_writer('\n')
-        __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'extra_head'):
             context['self'].extra_head(**pageargs)
         
 
-        __M_writer('\n\n')
+        __M_writer('\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
-        
-
-        __M_writer('\n\n')
-        if 'parent' not in context._data or not hasattr(context._data['parent'], 'sourcelink'):
-            context['self'].sourcelink(**pageargs)
         
 
         __M_writer('\n')
@@ -84,45 +74,17 @@ def render_extra_head(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         post = context.get('post', UNDEFINED)
-        math = _mako_get_namespace(context, 'math')
-        parent = context.get('parent', UNDEFINED)
         helper = _mako_get_namespace(context, 'helper')
         def extra_head():
             return render_extra_head(context)
         __M_writer = context.writer()
-        __M_writer('\n    ')
-        __M_writer(str(parent.extra_head()))
+        __M_writer('\n')
+        __M_writer(str(helper.twitter_card_information(post)))
         __M_writer('\n')
         if post.meta('keywords'):
             __M_writer('    <meta name="keywords" content="')
             __M_writer(filters.html_escape(str(post.meta('keywords'))))
             __M_writer('">\n')
-        __M_writer('    <meta name="author" content="')
-        __M_writer(filters.html_escape(str(post.author())))
-        __M_writer('">\n')
-        if post.prev_post:
-            __M_writer('        <link rel="prev" href="')
-            __M_writer(str(post.prev_post.permalink()))
-            __M_writer('" title="')
-            __M_writer(filters.html_escape(str(post.prev_post.title())))
-            __M_writer('" type="text/html">\n')
-        if post.next_post:
-            __M_writer('        <link rel="next" href="')
-            __M_writer(str(post.next_post.permalink()))
-            __M_writer('" title="')
-            __M_writer(filters.html_escape(str(post.next_post.title())))
-            __M_writer('" type="text/html">\n')
-        if post.is_draft:
-            __M_writer('        <meta name="robots" content="noindex">\n')
-        __M_writer('    ')
-        __M_writer(str(helper.open_graph_metadata(post)))
-        __M_writer('\n    ')
-        __M_writer(str(helper.twitter_card_information(post)))
-        __M_writer('\n    ')
-        __M_writer(str(helper.meta_translations(post)))
-        __M_writer('\n    ')
-        __M_writer(str(math.math_styles_ifpost(post)))
-        __M_writer('\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -131,38 +93,52 @@ def render_extra_head(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        title = context.get('title', UNDEFINED)
+        def sourcelink():
+            return render_sourcelink(context)
+        permalink = context.get('permalink', UNDEFINED)
+        date_format = context.get('date_format', UNDEFINED)
+        helper = _mako_get_namespace(context, 'helper')
+        post = context.get('post', UNDEFINED)
+        comments = _mako_get_namespace(context, 'comments')
+        pheader = _mako_get_namespace(context, 'pheader')
+        messages = context.get('messages', UNDEFINED)
         def content():
             return render_content(context)
-        post = context.get('post', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
-        pheader = _mako_get_namespace(context, 'pheader')
-        math = _mako_get_namespace(context, 'math')
-        comments = _mako_get_namespace(context, 'comments')
-        helper = _mako_get_namespace(context, 'helper')
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\n<article class="post-')
-        __M_writer(str(post.meta('type')))
-        __M_writer(' h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">\n    ')
-        __M_writer(str(pheader.html_post_header()))
-        __M_writer('\n    <div class="e-content entry-content" itemprop="articleBody text">\n    ')
+        __M_writer('\n    <div id="post-')
+        __M_writer(str(post.meta('slug')))
+        __M_writer('" class="post hfeed">\n        <h2 class="entry-title"><a href=\'')
+        __M_writer(str(permalink))
+        __M_writer("'>")
+        __M_writer(str(title))
+        __M_writer('</a></h2>\n        <div class="entry-content">\n            ')
         __M_writer(str(post.text()))
-        __M_writer('\n    </div>\n    <aside class="postpromonav">\n    <nav>\n    ')
+        __M_writer('\n        </div>\n        <div class="archive-meta">\n            ')
+        __M_writer(str(messages("Posted:")))
+        __M_writer(' <time class="published" datetime="')
+        __M_writer(str(post.date.isoformat()))
+        __M_writer('">')
+        __M_writer(str(post.formatted_date(date_format)))
+        __M_writer('</time>\n            <span class="meta-sep">|</span>\n            ')
+        __M_writer(str(pheader.html_translations(post)))
+        __M_writer('\n            ')
+        if 'parent' not in context._data or not hasattr(context._data['parent'], 'sourcelink'):
+            context['self'].sourcelink(**pageargs)
+        
+
+        __M_writer('\n                ')
         __M_writer(str(helper.html_tags(post)))
-        __M_writer('\n    ')
+        __M_writer('\n            <span class="entry-tags">\n            </span>\n        </div>\n    </div>\n    ')
         __M_writer(str(helper.html_pager(post)))
-        __M_writer('\n    </nav>\n    </aside>\n')
-        if not post.meta('nocomments') and site_has_comments:
-            __M_writer('        <section class="comments hidden-print">\n        <h2>')
-            __M_writer(str(messages("Comments")))
-            __M_writer('</h2>\n        ')
-            __M_writer(str(comments.comment_form(post.permalink(absolute=True), post.title(), post._base_path)))
-            __M_writer('\n        </section>\n')
-        __M_writer('    ')
-        __M_writer(str(math.math_scripts_ifpost(post)))
-        __M_writer('\n</article>\n')
-        __M_writer(str(comments.comment_link_script()))
         __M_writer('\n')
+        if not post.meta('nocomments'):
+            __M_writer('        ')
+            __M_writer(str(comments.comment_form(post.permalink(absolute=True), post.title(), post.base_path)))
+            __M_writer('\n')
+        __M_writer('    ')
+        __M_writer(str(helper.mathjax_script(post)))
+        __M_writer('\n    </div>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -171,19 +147,19 @@ def render_content(context,**pageargs):
 def render_sourcelink(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        show_sourcelink = context.get('show_sourcelink', UNDEFINED)
         messages = context.get('messages', UNDEFINED)
         post = context.get('post', UNDEFINED)
         def sourcelink():
             return render_sourcelink(context)
         __M_writer = context.writer()
         __M_writer('\n')
-        if show_sourcelink:
-            __M_writer('    <li>\n    <a href="')
+        if not post.meta('password'):
+            __M_writer('                <a href="')
             __M_writer(str(post.source_link()))
             __M_writer('" id="sourcelink">')
             __M_writer(str(messages("Source")))
-            __M_writer('</a>\n    </li>\n')
+            __M_writer('</a>\n')
+        __M_writer('            ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -191,6 +167,6 @@ def render_sourcelink(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "/usr/lib/python3.6/site-packages/nikola/data/themes/bootstrap3/templates/post.tmpl", "uri": "post.tmpl", "source_encoding": "utf-8", "line_map": {"23": 2, "26": 3, "29": 4, "32": 5, "38": 0, "58": 2, "59": 3, "60": 4, "61": 5, "62": 6, "67": 27, "72": 50, "77": 58, "83": 8, "93": 8, "94": 9, "95": 9, "96": 10, "97": 11, "98": 11, "99": 11, "100": 13, "101": 13, "102": 13, "103": 14, "104": 15, "105": 15, "106": 15, "107": 15, "108": 15, "109": 17, "110": 18, "111": 18, "112": 18, "113": 18, "114": 18, "115": 20, "116": 21, "117": 23, "118": 23, "119": 23, "120": 24, "121": 24, "122": 25, "123": 25, "124": 26, "125": 26, "131": 29, "144": 29, "145": 30, "146": 30, "147": 31, "148": 31, "149": 33, "150": 33, "151": 37, "152": 37, "153": 38, "154": 38, "155": 41, "156": 42, "157": 43, "158": 43, "159": 44, "160": 44, "161": 47, "162": 47, "163": 47, "164": 49, "165": 49, "171": 52, "180": 52, "181": 53, "182": 54, "183": 55, "184": 55, "185": 55, "186": 55, "192": 186}}
+{"filename": "themes/blogtxt/templates/post.tmpl", "uri": "post.tmpl", "source_encoding": "utf-8", "line_map": {"23": 2, "26": 3, "29": 4, "35": 0, "54": 2, "55": 3, "56": 4, "57": 5, "62": 11, "67": 38, "73": 6, "81": 6, "82": 7, "83": 7, "84": 8, "85": 9, "86": 9, "87": 9, "93": 12, "109": 12, "110": 13, "111": 13, "112": 14, "113": 14, "114": 14, "115": 14, "116": 16, "117": 16, "118": 19, "119": 19, "120": 19, "121": 19, "122": 19, "123": 19, "124": 21, "125": 21, "130": 26, "131": 27, "132": 27, "133": 32, "134": 32, "135": 33, "136": 34, "137": 34, "138": 34, "139": 36, "140": 36, "141": 36, "147": 22, "155": 22, "156": 23, "157": 24, "158": 24, "159": 24, "160": 24, "161": 24, "162": 26, "168": 162}}
 __M_END_METADATA
 """
