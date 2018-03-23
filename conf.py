@@ -18,7 +18,7 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Anastasis Grammenos"  # (translatable)
-BLOG_TITLE = "gramanas >> blog"  # (translatable)
+BLOG_TITLE = "gramanas devlog"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://gramanas.github.io/"
@@ -142,7 +142,7 @@ NAVIGATION_LINKS = {
 }
 
 # Name of the theme to use.
-THEME = "blogtxt"
+THEME = "lotabout"
 
 # Primary color of your theme. This will be used to customize your theme and
 # auto-generate related colors in POSTS_SECTION_COLORS. Must be a HEX value.
