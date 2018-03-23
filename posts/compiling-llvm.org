@@ -35,7 +35,7 @@ My computer is old.
 OK, it's not that old, but it is abused the last 6 years that I own it
 and it's not top tier. Just a normal ~i5~ computer from the 2010s.
 
-That said, the first time I built it took more than 45 minutes.
+That said, the first time I built LLVM, it took more than 45 minutes.
 
 There are various optimizations one could do to improve compilation times.
 I already mentioned keeping two differently configured build folders.
