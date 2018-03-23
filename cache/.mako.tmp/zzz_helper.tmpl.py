@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1521798398.9771857
+_modified_time = 1521798490.571838
 _enable_loop = True
 _template_filename = 'themes/lotabout/templates/zzz_helper.tmpl'
 _template_uri = 'zzz_helper.tmpl'
@@ -35,29 +35,29 @@ def render_body(context,**pageargs):
 def render_html_headstart(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        mathjax_config = context.get('mathjax_config', UNDEFINED)
-        title = context.get('title', UNDEFINED)
-        is_rtl = context.get('is_rtl', UNDEFINED)
-        prevlink = context.get('prevlink', UNDEFINED)
-        twitter_card = context.get('twitter_card', UNDEFINED)
-        def html_stylesheets():
-            return render_html_stylesheets(context)
-        abs_link = context.get('abs_link', UNDEFINED)
         comment_system_id = context.get('comment_system_id', UNDEFINED)
-        comment_system = context.get('comment_system', UNDEFINED)
-        extra_head_data = context.get('extra_head_data', UNDEFINED)
-        striphtml = context.get('striphtml', UNDEFINED)
-        favicons = context.get('favicons', UNDEFINED)
-        lang = context.get('lang', UNDEFINED)
-        use_open_graph = context.get('use_open_graph', UNDEFINED)
-        use_cdn = context.get('use_cdn', UNDEFINED)
-        description = context.get('description', UNDEFINED)
         url_replacer = context.get('url_replacer', UNDEFINED)
+        description = context.get('description', UNDEFINED)
+        use_open_graph = context.get('use_open_graph', UNDEFINED)
+        permalink = context.get('permalink', UNDEFINED)
+        title = context.get('title', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
+        nextlink = context.get('nextlink', UNDEFINED)
         def html_feedlinks():
             return render_html_feedlinks(context)
-        permalink = context.get('permalink', UNDEFINED)
+        extra_head_data = context.get('extra_head_data', UNDEFINED)
         blog_title = context.get('blog_title', UNDEFINED)
-        nextlink = context.get('nextlink', UNDEFINED)
+        def html_stylesheets():
+            return render_html_stylesheets(context)
+        prevlink = context.get('prevlink', UNDEFINED)
+        use_cdn = context.get('use_cdn', UNDEFINED)
+        mathjax_config = context.get('mathjax_config', UNDEFINED)
+        comment_system = context.get('comment_system', UNDEFINED)
+        striphtml = context.get('striphtml', UNDEFINED)
+        twitter_card = context.get('twitter_card', UNDEFINED)
+        abs_link = context.get('abs_link', UNDEFINED)
+        favicons = context.get('favicons', UNDEFINED)
+        is_rtl = context.get('is_rtl', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<!DOCTYPE html>\n<html ')
         __M_writer("prefix='")
@@ -156,11 +156,11 @@ def render_html_stylesheets(context):
 def render_html_feedlinks(context):
     __M_caller = context.caller_stack._push_frame()
     try:
-        len = context.get('len', UNDEFINED)
         rss_link = context.get('rss_link', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
         _link = context.get('_link', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
         generate_rss = context.get('generate_rss', UNDEFINED)
+        len = context.get('len', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if rss_link:
@@ -253,10 +253,10 @@ def render_html_title(context):
 def render_html_translations(context,post):
     __M_caller = context.caller_stack._push_frame()
     try:
-        messages = context.get('messages', UNDEFINED)
         len = context.get('len', UNDEFINED)
-        lang = context.get('lang', UNDEFINED)
         translations = context.get('translations', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if len(translations) > 1:

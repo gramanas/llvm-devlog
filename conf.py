@@ -18,7 +18,7 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Anastasis Grammenos"  # (translatable)
-BLOG_TITLE = "gramanas devlog"  # (translatable)
+BLOG_TITLE = "gramanas >> blog"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
 SITE_URL = "https://gramanas.github.io/"

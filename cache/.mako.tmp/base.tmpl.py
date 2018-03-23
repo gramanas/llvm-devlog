@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1521798398.9541695
+_modified_time = 1521798490.5492988
 _enable_loop = True
 _template_filename = 'themes/lotabout/templates/base.tmpl'
 _template_uri = 'base.tmpl'
@@ -41,17 +41,17 @@ def render_body(context,**pageargs):
         _mako_get_namespace(context, 'header')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'footer')._populate(_import_ns, ['*'])
         _mako_get_namespace(context, 'annotations')._populate(_import_ns, ['*'])
+        set_locale = _import_ns.get('set_locale', context.get('set_locale', UNDEFINED))
+        zzz = _mako_get_namespace(context, 'zzz')
+        def content():
+            return render_content(context._locals(__M_locals))
+        footer = _mako_get_namespace(context, 'footer')
         def extra_head():
             return render_extra_head(context._locals(__M_locals))
         body_end = _import_ns.get('body_end', context.get('body_end', UNDEFINED))
-        def content():
-            return render_content(context._locals(__M_locals))
-        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
-        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
-        footer = _mako_get_namespace(context, 'footer')
-        set_locale = _import_ns.get('set_locale', context.get('set_locale', UNDEFINED))
         header = _mako_get_namespace(context, 'header')
-        zzz = _mako_get_namespace(context, 'zzz')
+        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
+        lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
