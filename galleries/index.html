@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html prefix="            og: http://ogp.me/ns# article: http://ogp.me/ns/article#     " vocab="http://ogp.me/ns" lang="en">
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " vocab="http://ogp.me/ns" lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>galleries | gramanas &gt;&gt; blog</title>
+<title>galleries | gramanas devlog</title>
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
-<meta name="theme-color" content="#5670d4">
-<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="stylesheet" id="css_theme" href="../assets/css/theme.gray.css" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
 <link rel="canonical" href="https://gramanas.github.io/galleries/">
-<!--[if lt IE 9]><script src="../assets/js/html5shiv-printshiv.min.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <style type="text/css">
     .image-block {
         display: inline-block;
@@ -21,18 +20,44 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 </head>
 <body>
-<div id="wrapper">
-    <div id="container">
-        <div id="content">
-            <div id="header">
-                <h1 id="blog-title">
-                    <a href="https://gramanas.github.io/" title="gramanas &gt;&gt; blog">gramanas &gt;&gt; blog</a>
-                </h1>
-                
-                
+    
+
+    <header id="header" class="header transparent"><div class="container">
+            <div class="scroll top">
+                <a href="#"><i class="icon-chevron-up icon-large"></i></a>
             </div>
-        <div class="hfeed">
-            <!--Body content-->
+
+            
+    <div class="brand">
+        <div class="flip_container">
+            <div class="flipper">
+                <div class="front">
+                    <p><a href="https://gramanas.github.io/" title="gramanas devlog" rel="home">
+
+                        <span id="blog-title">gramanas devlog</span>
+                    </a></p>
+                </div>
+
+                <div class="back">
+                    <p><a href="https://gramanas.github.io/" title="LLVM development log for GSoC 2018" rel="home">
+                        <span id="blog-description">LLVM development log for GSoC 2018</span>
+                    </a></p>
+                </div>			
+            </div>
+        </div>
+    </div>
+
+            
+    <nav id="menu" role="navigation"><ul>
+<li><a href="../archive.html">Archive</a></li>
+                <li><a href="../rss.xml">RSS feed</a></li>
+    
+    
+    </ul></nav>
+</div>
+        <div class="separator clearfix"></div>
+    </header><div class="body">
+        <div id="main" class="container">
             
     
 <nav class="breadcrumbs"><ul class="breadcrumb">
@@ -41,87 +66,26 @@
 
 <div id="gallery_container"></div>
 
-            <!--End of body content-->
         </div>
-<!-- .hfeed -->
     </div>
-<!-- #content -->
-</div>
-<!-- #container -->
-
-<div id="primary" class="theme_sidebar">
-    <ul>
-<li>
-<h3><a href="../archive.html">Archive</a></h3>
-            
-            
-            </li>
-<li>
-<h3><a href="../rss.xml">RSS feed</a></h3>
-            
-            
-        </li>
-<li>
-        </li>
-<li>
-    </li>
-</ul>
-</div>
-<!-- #primary .theme_sidebar -->
-
-<div id="footer">
-    <span id="theme-link"><a href="http://www.plaintxt.org/themes/blogtxt/" title="blog.txt theme for WordPress" rel="follow designer">blog.txt</a> 'theme by <span class="vcard"><a class="url fn n" href="http://scottwallick.com/" title="scottwallick.com" rel="follow designer"><span class="given-name">Scott</span><span class="additional-name"> Allan</span><span class="family-name"> Wallick</span></a></span></span>
-    <small>Contents © 2018         <a href="mailto:anastasis.gramm2@gmail.com">Anastasis Grammenos</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
-            
- </small><p>
-</p>
-</div>
-<!-- #footer -->
-
-</div>
-<!-- #wrapper -->
     
-    
-    
-<script src="../assets/js/flowr.js"></script><script>
-jsonContent = [];
-flowr(document.querySelectorAll("#gallery_container")[0], {
-        data : jsonContent,
-        height : 180*.6,
-        padding: 5,
-        rows: -1,
-        render : function(params) {
-            // Just return a div, string or a dom object, anything works fine
-            var img = document.createElement("img");
-            img.setAttribute('src', params.itemData.url_thumb);
-            img.setAttribute('width', params.width);
-            img.setAttribute('height', params.height);
-            img.setAttribute('alt', params.itemData.title);
-            img.style.maxWidth = '100%';
-            link = document.createElement("a");
-            link.setAttribute('href', params.itemData.url);
-            link.setAttribute('class', 'image-reference');
-            div = document.createElement("div");
-            div.setAttribute('class', 'image-block');
-            div.setAttribute('title', params.itemData.title);
-            div.setAttribute('data-toggle', "tooltip")
-            link.append(img);
-            div.append(link);
-            //div.hover(div.tooltip());
-            return div;
-        },
-        itemWidth : function(data) { return data.size.w; },
-        itemHeight : function(data) { return data.size.h; },
-        complete : function(params) {
-            if( jsonContent.length > params.renderedItems ) {
-                nextRenderList = jsonContent.slice( params.renderedItems );
-            }
-        }
-    });
-    baguetteBox.run('#gallery_container', {
-        captions: function(element) {
-            return element.getElementsByTagName('img')[0].alt;
-    }});
-</script>
+
+    <footer class="footer"><div class="container clearfix">
+            <div class="social pull-left">
+                <ul>
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../rss.xml">
+<a href="../rss.xml" target="_blank">
+                        <li> <i class="icon-rss icon-large"></i> 
+                        </li>
+                    </a>
+                </ul>
+</div>
+            <div class="copyright pull-right">
+                <p>Contents © 2018         <a href="mailto:anastasis.gramm2@gmail.com">Anastasis Grammenos</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         </p>
+                
+            </div>
+            
+        </div>
+    </footer><script src="../assets/js/all-nocdn.js" type="text/javascript"></script>
 </body>
 </html>
