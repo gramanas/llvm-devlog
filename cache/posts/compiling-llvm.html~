@@ -1,5 +1,5 @@
 <p>
-After looking through the 2018 GSoC projects <code>LLVM</code>
+After looking through the 2018 GSoC projects LLVM
 stands out as the most interesting one for me.
 </p>
 
@@ -50,8 +50,8 @@ That said, the first time I built it took more than 45 minutes.
 <p>
 There are various optimizations one could do to improve compilation times.
 I already mentioned keeping two differently configured build folders.
-I also installed <code>ccahce</code> since <code>LLVM</code>'s <code>CMakeLists.txt</code> has a flag to
-enable it's usage. <code>C++</code> modules also help.
+I also installed <code>ccahce</code> since LLVM's <code>CMakeLists.txt</code> has a flag to
+enable it's usage. C++ modules also help.
 </p>
 
 <p>
