@@ -1,0 +1,66 @@
+<p>
+Th
+In order to fix <code>DI</code> info loss I need to find when and where it occurs.
+Many transformations result in <code>DI</code> loss due to the simple fact that they change
+and optimize code and thus the resulting llvm IR doesn't match the
+original code.fg
+e opt tool has the <code>-debugify</code> and <code>-check-debugify</code> flags to attach
+DI to everything and then check if it's correct.
+</p>
+
+<p>
+With a simple bash script I can run tests under a transformation folder
+like so:
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>ls ~/code/llvm/test/Transforms/<span class="nv">$TRANSFORMATION</span>/*.ll -1<span class="k">)</span><span class="p">;</span> <span class="k">do</span> 
+    <span class="nb">echo</span> -e <span class="nv">$i</span><span class="s2">&quot;:\n-------&quot;</span><span class="p">;</span> 
+    opt -debugify -<span class="nv">$TRANSFORMATION</span> -check-debugify -disable-output <span class="nv">$i</span><span class="p">;</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;-------\n&quot;</span><span class="p">;</span> 
+<span class="k">done</span> &gt; results <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+
+<p>
+and then proceed to view the results.
+</p>
+
+<p>
+For example here is the command for the LICM transformation:
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>ls ~/code/llvm/test/Transforms/LICM/*.ll -1<span class="k">)</span><span class="p">;</span> <span class="k">do</span> 
+    <span class="nb">echo</span> -e <span class="nv">$i</span><span class="s2">&quot;:\n-------&quot;</span><span class="p">;</span> 
+    opt -debugify -licm -check-debugify -disable-output <span class="nv">$i</span><span class="p">;</span> 
+    <span class="nb">echo</span> -e <span class="s2">&quot;-------\n&quot;</span><span class="p">;</span> 
+<span class="k">done</span> &gt; results <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+
+<p>
+Here is a sample of the <code>results</code> file:
+</p>
+
+<div class="highlight"><pre><span></span>/home/gramanas/code/llvm/test/Transforms/LICM/2003-02-27-StoreSinkPHIs.ll:
+-------
+CheckDebugify: PASS
+-------
+
+/home/gramanas/code/llvm/test/Transforms/LICM/2003-05-02-LoadHoist.ll:
+-------
+ERROR: Instruction with empty DebugLoc --   %B.lcssa <span class="o">=</span> phi i32 <span class="o">[</span> %B, %Loop <span class="o">]</span>
+CheckDebugify: FAIL
+-------
+
+/home/gramanas/code/llvm/test/Transforms/LICM/2004-09-14-AliasAnalysisInvalidate.ll:
+-------
+WARNING: Missing line <span class="m">3</span>
+WARNING: Missing line <span class="m">4</span>
+CheckDebugify: PASS
+-------
+
+/home/gramanas/code/llvm/test/Transforms/LICM/2003-02-28-PromoteDifferentType.ll:
+-------
+ERROR: Instruction with empty DebugLoc --   %P2 <span class="o">=</span> bitcast i32* %P to i8*
+WARNING: Missing line <span class="m">3</span>
+CheckDebugify: FAIL
+-------
+</pre></div>

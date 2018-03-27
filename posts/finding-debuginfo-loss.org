@@ -1,0 +1,73 @@
+#+BEGIN_COMMENT
+.. title: Finding DebugInfo Loss
+.. slug: finding-debuginfo-loss
+.. date: 2018-03-27 15:51:52 UTC+03:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+In order to fix ~DebugInfo~ loss I need to find where and when it occurs.
+Many transformations result in ~DI~ loss due to the simple fact that they change
+and optimize code and thus the resulting llvm IR doesn't match the
+original code.
+
+The opt tool has the ~-debugify~ and ~-check-debugify~ flags to attach
+~DI~ to everything and then check if it's correct.
+
+* Find culprit transformations
+With a simple bash script I can run tests under a transformation folder
+like so:
+
+#+BEGIN_SRC sh
+  for i in $(ls ~/code/llvm/test/Transforms/$TRANSFORMATION/*.ll -1); do 
+      echo -e $i":\n-------"; 
+      opt -debugify -$TRANSFORMATION -check-debugify -disable-output $i;
+      echo -e "-------\n"; 
+  done > results 2>&1
+#+END_SRC
+
+and then proceed to view the results.
+
+For example here is the command for the LICM transformation:
+
+#+BEGIN_SRC sh
+  for i in $(ls ~/code/llvm/test/Transforms/LICM/*.ll -1); do 
+      echo -e $i":\n-------"; 
+      opt -debugify -licm -check-debugify -disable-output $i; 
+      echo -e "-------\n"; 
+  done > results 2>&1
+#+END_SRC
+
+Here is a sample of the ~results~ file:
+
+#+BEGIN_SRC sh
+/home/gramanas/code/llvm/test/Transforms/LICM/2003-02-27-StoreSinkPHIs.ll:
+-------
+CheckDebugify: PASS
+-------
+
+/home/gramanas/code/llvm/test/Transforms/LICM/2003-05-02-LoadHoist.ll:
+-------
+ERROR: Instruction with empty DebugLoc --   %B.lcssa = phi i32 [ %B, %Loop ]
+CheckDebugify: FAIL
+-------
+
+/home/gramanas/code/llvm/test/Transforms/LICM/2004-09-14-AliasAnalysisInvalidate.ll:
+-------
+WARNING: Missing line 3
+WARNING: Missing line 4
+CheckDebugify: PASS
+-------
+
+/home/gramanas/code/llvm/test/Transforms/LICM/2003-02-28-PromoteDifferentType.ll:
+-------
+ERROR: Instruction with empty DebugLoc --   %P2 = bitcast i32* %P to i8*
+WARNING: Missing line 3
+CheckDebugify: FAIL
+-------
+#+END_SRC
+
+
