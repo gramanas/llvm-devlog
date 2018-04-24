@@ -64,7 +64,6 @@ Here are the minimal build flags:
 #+END_SRC
 
 And here is the full build, basically the same but without the ARCMT and static analyzer disabled, plus it builds for all targets.
-Also instead of ~ccache~ I enable the ~C++~ modules.
 
 #+BEGIN_SRC sh
   cd /build/llvm-full # the full build
