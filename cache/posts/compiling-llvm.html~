@@ -74,7 +74,7 @@ Here are the minimal build flags:
 <div class="highlight"><pre><span></span><span class="nb">cd</span> /build/llvm-dev <span class="c1"># the minimal folder</span>
 cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span><span class="m">1</span> <span class="se">\</span>
       -DBUILD_SHARED_LIBS<span class="o">=</span><span class="nb">true</span> <span class="se">\</span>
-      -DCMAKE_BUILD_TYPE<span class="o">=</span>RelWithDebInfo <span class="se">\</span>
+      -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug <span class="se">\</span>
       -DLLVM_ENABLE_ASSERTIONS<span class="o">=</span>ON <span class="se">\</span>
       -DCMAKE_CXX_COMPILER<span class="o">=</span>clang++ <span class="se">\</span>
       -DCMAKE_C_COMPILER<span class="o">=</span>clang <span class="se">\</span>
@@ -96,7 +96,7 @@ cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span><span clas
       -DLLVM_ENABLE_ASSERTIONS<span class="o">=</span>ON <span class="se">\</span>
       -DCMAKE_CXX_COMPILER<span class="o">=</span>clang++ <span class="se">\</span>
       -DCMAKE_C_COMPILER<span class="o">=</span>clang <span class="se">\</span>
-      -DLLVM_ENABLE_MODULES<span class="o">=</span>ON ~/code/llvm
+      -DLLVM_CCACHE_BUILD<span class="o">=</span>ON ~/code/llvm
 </pre></div>
 </div>
 </div>
