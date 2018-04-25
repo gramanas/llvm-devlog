@@ -1,0 +1,43 @@
+#+BEGIN_COMMENT
+.. title: Community Bonding
+.. slug: community-bonding
+.. date: 2018-04-25 18:09:41 UTC+03:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+
+My proposal was accepted!
+
+For the next few days it's the community bonding period. I will take advantage
+of this time to let the community know about my project and it's goals, as well
+as get a head start on the coding period.
+
+* Starting the project
+
+The first step to improving the debugging of optimized code is to measure
+where we lose Debug information.
+Verdant has already created the tool to do that. It's the [[https://reviews.llvm.org/D40512][debugify mode]].
+Currently ~debugify~ is a ~ModulePass~ and works like [[https://gramanas.github.io/posts/finding-debuginfo-loss/][that]]. 
+It needs to be refactored into a ~FunctionPass~ while keeping the
+same underying logic. That way it will be managed from the ~FunctionPassManager~.
+
+Next the opt tool should have a custom ~PassManager~ that injects the new
+debugify before a pass and then the new check-debugify after it. This will
+be a new mode called debugify-each. It will basically gather DI loss from
+every pass in the pipeline.
+
+~Debugify~ as ~ModulePass~ will still be avaliable but it will be a wrapper
+around the ~FunctionPass~ one.
+
+*  Ok, I got the data. Now what?
+
+The resulting DI loss occurences will be stored into some kinde of human readable
+data serialization format, like JSON or YAML.
+
+More on that on a later post.
+
+

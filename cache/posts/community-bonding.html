@@ -1,0 +1,49 @@
+<p>
+My proposal was accepted!
+</p>
+
+<p>
+For the next few days it's the community bonding period. I will take advantage
+of this time to let the community know about my project and it's goals, as well
+as get a head start on the coding period.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Starting the project</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The first step to improving the debugging of optimized code is to measure
+where we lose Debug information.
+Verdant has already created the tool to do that. It's the <a href="https://reviews.llvm.org/D40512">debugify mode</a>.
+Currently <code>debugify</code> is a <code>ModulePass</code> and works like <a href="https://gramanas.github.io/posts/finding-debuginfo-loss/">that</a>. 
+It needs to be refactored into a <code>FunctionPass</code> while keeping the
+same underying logic. That way it will be managed from the <code>FunctionPassManager</code>.
+</p>
+
+<p>
+Next the opt tool should have a custom <code>PassManager</code> that injects the new
+debugify before a pass and then the new check-debugify after it. This will
+be a new mode called debugify-each. It will basically gather DI loss from
+every pass in the pipeline.
+</p>
+
+<p>
+<code>Debugify</code> as <code>ModulePass</code> will still be avaliable but it will be a wrapper
+around the <code>FunctionPass</code> one.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Ok, I got the data. Now what?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The resulting DI loss occurences will be stored into some kinde of human readable
+data serialization format, like JSON or YAML.
+</p>
+
+<p>
+More on that on a later post.
+</p>
+</div>
+</div>
