@@ -17,7 +17,7 @@ where we lose Debug information.
 Verdant has already created the tool to do that. It's the <a href="https://reviews.llvm.org/D40512">debugify mode</a>.
 Currently <code>debugify</code> is a <code>ModulePass</code> and works like <a href="https://gramanas.github.io/posts/finding-debuginfo-loss/">that</a>. 
 It needs to be refactored into a <code>FunctionPass</code> while keeping the
-same underlying logic. That way it will be managed from the <code>FunctionPassManager</code>.
+same underying logic. That way it will be managed from the <code>FunctionPassManager</code>.
 </p>
 
 <p>
@@ -28,17 +28,17 @@ every pass in the pipeline.
 </p>
 
 <p>
-<code>Debugify</code> as <code>ModulePass</code> will still be available but it will be a wrapper
+<code>Debugify</code> as <code>ModulePass</code> will still be avaliable but it will be a wrapper
 around the <code>FunctionPass</code> one.
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">OK, I got the data. Now what?</h2>
+<h2 id="sec-2">Ok, I got the data. Now what?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-The resulting DI loss occurrences will be stored into some kind of human readable
+The resulting DI loss occurences will be stored into some kinde of human readable
 data serialization format, like JSON or YAML.
 </p>
 

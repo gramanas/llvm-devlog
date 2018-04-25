@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1524671960.1212168
+_modified_time = 1524673700.263646
 _enable_loop = True
 _template_filename = 'themes/lotabout/templates/post.tmpl'
 _template_uri = 'post.tmpl'
@@ -38,16 +38,16 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         _import_ns = {}
         _mako_get_namespace(context, 'zzz')._populate(_import_ns, ['*'])
-        helper = _mako_get_namespace(context, 'helper')
         comments = _mako_get_namespace(context, 'comments')
+        post = _import_ns.get('post', context.get('post', UNDEFINED))
+        helper = _mako_get_namespace(context, 'helper')
         zzz = _mako_get_namespace(context, 'zzz')
         parent = _import_ns.get('parent', context.get('parent', UNDEFINED))
         site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
-        post = _import_ns.get('post', context.get('post', UNDEFINED))
-        def content():
-            return render_content(context._locals(__M_locals))
         def extra_head():
             return render_extra_head(context._locals(__M_locals))
+        def content():
+            return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -74,11 +74,11 @@ def render_extra_head(context,**pageargs):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'zzz')._populate(_import_ns, ['*'])
-        helper = _mako_get_namespace(context, 'helper')
-        post = _import_ns.get('post', context.get('post', UNDEFINED))
+        parent = _import_ns.get('parent', context.get('parent', UNDEFINED))
         def extra_head():
             return render_extra_head(context)
-        parent = _import_ns.get('parent', context.get('parent', UNDEFINED))
+        post = _import_ns.get('post', context.get('post', UNDEFINED))
+        helper = _mako_get_namespace(context, 'helper')
         __M_writer = context.writer()
         __M_writer('\n    ')
         __M_writer(str(parent.extra_head()))
@@ -107,9 +107,9 @@ def render_content(context,**pageargs):
         _import_ns = {}
         _mako_get_namespace(context, 'zzz')._populate(_import_ns, ['*'])
         site_has_comments = _import_ns.get('site_has_comments', context.get('site_has_comments', UNDEFINED))
-        helper = _mako_get_namespace(context, 'helper')
         comments = _mako_get_namespace(context, 'comments')
         post = _import_ns.get('post', context.get('post', UNDEFINED))
+        helper = _mako_get_namespace(context, 'helper')
         zzz = _mako_get_namespace(context, 'zzz')
         def content():
             return render_content(context)
