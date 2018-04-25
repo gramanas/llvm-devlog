@@ -21,7 +21,7 @@ and big projects, this took quite some time.
 
 * Build process
 The project uses CMake as a build system, with many flags available to tune
-the installation. After checking out the source code either from git or SVN
+the compilation. After checking out the source code either from git or SVN
 it's time to build it.
 
 After some failed attempts and some Q&A's in the IRC channel, I found the required flags

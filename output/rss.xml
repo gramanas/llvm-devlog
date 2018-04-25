@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Tue, 24 Apr 2018 16:21:50 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Finding DebugInfo Loss</title><link>https://gramanas.github.io/posts/finding-debuginfo-loss/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Wed, 25 Apr 2018 15:07:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Finding DebugInfo Loss</title><link>https://gramanas.github.io/posts/finding-debuginfo-loss/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 In order to fix &lt;code&gt;DebugInfo&lt;/code&gt; loss I need to find where and when it occurs.
 Many transformations result in &lt;code&gt;DI&lt;/code&gt; loss due to the simple fact that they change
 and optimize code and thus the resulting llvm IR doesn't match the
@@ -100,7 +100,7 @@ and big projects, this took quite some time.
 &lt;div class="outline-text-2" id="text-1"&gt;
 &lt;p&gt;
 The project uses CMake as a build system, with many flags available to tune
-the installation. After checking out the source code either from git or SVN
+the compilation. After checking out the source code either from git or SVN
 it's time to build it.
 &lt;/p&gt;
 

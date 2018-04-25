@@ -86,7 +86,6 @@ cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS<span class="o">=</span><span clas
 
 <p>
 And here is the full build, basically the same but without the ARCMT and static analyzer disabled, plus it builds for all targets.
-Also instead of <code>ccache</code> I enable the <code>C++</code> modules.
 </p>
 
 <div class="highlight"><pre><span></span><span class="nb">cd</span> /build/llvm-full <span class="c1"># the full build</span>
