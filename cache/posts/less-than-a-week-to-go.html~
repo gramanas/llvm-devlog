@@ -72,8 +72,12 @@ Notice the missing DI in the first φ instruction of the <code>for.cond</code> b
 I am still very disoriented in the codebase and I am trying to understand 
 how things interact with each other. I believe I have made some progress 
 but there are still so many things to read and learn and I haven't even 
-started to code yet! The community is extremely active, the code is well
-documented, the dev tools are amazing  and every singe day I spend
+started to code yet! 
+</p>
+
+<p>
+The community is extremely active, the code is well
+documented, the dev tools are amazing and every singe day I spend
 reading code and documentation I learn countless new exciting things. 
 As much as I am scared of the vastness of the project I am also excited
 to have this chance to work with all these great developers.

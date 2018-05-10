@@ -48,7 +48,6 @@ for.cond:                                         ; preds = %for.inc, %entry
   %2 = load i32, i32* %n.addr, align 4, !dbg !17, !tbaa !9
   %cmp = icmp slt i32 %1, %2, !dbg !18
   br i1 %cmp, label %for.body, label %for.cond.cleanup, !dbg !19
-
 #+END_SRC
 
 =After SROA:=
