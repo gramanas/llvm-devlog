@@ -1,0 +1,78 @@
+#+BEGIN_COMMENT
+.. title: Less than a week to go
+.. slug: less-that-a-week-to-go
+.. date: 2018-05-10 02:42:17 UTC+03:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+Less than a week remains until the coding period officially starts.
+Since the last post a few things changed. For starters I didn't
+get to implement the debugify-each mode cause someone else 
+already had a semi working implementation for it, witch
+recently landed for [[https://reviews.llvm.org/D46525][reviews]].
+
+Meanwhile using data from a [[https://llvm.org/devmtg/2018-04/talks.html#Lightning_11][talk]] given earlier this year 
+we figured that SROA reports a lot of DI Loss occurrences and debugify confirms that.
+It's also pretty early in the pipeline, so it's even more important.
+So, I've been reading through the code and learning about it. A great help
+has been [[https://gcc.gnu.org/wiki/summit2010?action=AttachFile&do=get&target=jambor.pdf][this]] paper which tries to explain the goals of the
+scalar replacement of aggregates.
+
+SORA is a big and complicated pass. I found this [[https://lists.llvm.org/pipermail/llvm-dev/2012-August/052682.html][mail]] from way back
+then from Chandler Carruth (who rewrote the pass to it's current form),
+that explains the basic underlying logic of the partitioning and splitting
+that takes place in the algorithm.
+
+There is still a lot left for me to begin to understand how the pass works,
+and as a way of doing that I am currently hunting down when the following DI loss occurs:
+
+=Before SROA:=
+#+BEGIN_SRC llvm
+entry:
+  %a.addr = alloca i32, align 4
+  %n.addr = alloca i32, align 4
+  %i = alloca i32, align 4
+  store i32 %a, i32* %a.addr, align 4, !tbaa !9
+  store i32 %n, i32* %n.addr, align 4, !tbaa !9
+  %0 = bitcast i32* %i to i8*, !dbg !13
+  call void @llvm.lifetime.start(i64 4, i8* %0) #2, !dbg !13
+  store i32 0, i32* %i, align 4, !dbg !14, !tbaa !9
+  br label %for.cond, !dbg !13
+
+for.cond:                                         ; preds = %for.inc, %entry
+  %1 = load i32, i32* %i, align 4, !dbg !15, !tbaa !9
+  %2 = load i32, i32* %n.addr, align 4, !dbg !17, !tbaa !9
+  %cmp = icmp slt i32 %1, %2, !dbg !18
+  br i1 %cmp, label %for.body, label %for.cond.cleanup, !dbg !19
+
+#+END_SRC
+
+=After SROA:=
+#+BEGIN_SRC llvm
+entry:
+  br label %for.cond, !dbg !9
+
+for.cond:                                         ; preds = %for.inc, %entry
+  %a.addr.0 = phi i32 [ %a, %entry ], [ %0, %for.inc ]
+  %i.0 = phi i32 [ 0, %entry ], [ %inc, %for.inc ], !dbg !10
+  %cmp = icmp slt i32 %i.0, %n, !dbg !12
+  br i1 %cmp, label %for.body, label %for.cond.cleanup, !dbg !14
+#+END_SRC
+
+Notice the missing DI in the first φ instruction of the ~for.cond~ block.
+
+* Closing thoughts
+I am still very disoriented in the codebase and I am trying to understand 
+how things interact with each other. I believe I have made some progress 
+but there are still so many things to read and learn and I haven't even 
+started to code yet! 
+
+The community is extremely active, the code is well
+documented, the dev tools are amazing and every singe day I spend
+reading code and documentation I learn countless new exciting things. 
+As much as I am scared of the vastness of the project I am also excited
+to have this chance to work with all these great developers.
