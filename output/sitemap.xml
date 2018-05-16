@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://gramanas.github.io/archive.html</loc>
-  <lastmod>2018-05-10T00:12:00Z</lastmod>
+  <lastmod>2018-05-16T14:55:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/categories/</loc>
@@ -48,5 +48,9 @@
  <url>
   <loc>https://gramanas.github.io/posts/less-that-a-week-to-go/</loc>
   <lastmod>2018-05-10T00:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://gramanas.github.io/posts/week-1-debugify-each/</loc>
+  <lastmod>2018-05-16T14:55:00Z</lastmod>
  </url>
 </urlset>

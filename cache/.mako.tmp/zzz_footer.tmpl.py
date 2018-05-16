@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1525912437.2579434
+_modified_time = 1526482501.948205
 _enable_loop = True
 _template_filename = 'themes/lotabout/templates/zzz_footer.tmpl'
 _template_uri = 'zzz_footer.tmpl'
@@ -42,13 +42,13 @@ def render_html_footer(context):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
         lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
-        html_feedlinks = _import_ns.get('html_feedlinks', context.get('html_feedlinks', UNDEFINED))
-        github = _import_ns.get('github', context.get('github', UNDEFINED))
         email = _import_ns.get('email', context.get('email', UNDEFINED))
-        content_footer = _import_ns.get('content_footer', context.get('content_footer', UNDEFINED))
+        github = _import_ns.get('github', context.get('github', UNDEFINED))
+        template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
+        html_feedlinks = _import_ns.get('html_feedlinks', context.get('html_feedlinks', UNDEFINED))
         _link = _import_ns.get('_link', context.get('_link', UNDEFINED))
+        content_footer = _import_ns.get('content_footer', context.get('content_footer', UNDEFINED))
         twitter = _import_ns.get('twitter', context.get('twitter', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n\n    <footer class=\'footer\'>\n        <div class="container clearfix">\n            <div class="social pull-left">\n                <ul>\n')

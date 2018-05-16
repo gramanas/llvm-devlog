@@ -1,0 +1,29 @@
+#+BEGIN_COMMENT
+.. title: Week 1: debugify-each
+.. slug: week-1-debugify-each
+.. date: 2018-05-16 17:02:07 UTC+03:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+
+A first iteration of [[https://reviews.llvm.org/D46525][Debugify-each]] has landed earlier this week. The tool works as expected
+but it's a bit rough around the edges.
+
+For starters debugify only prints if a pass passed or failed, and not the pass name.
+That was not a problem before debugify-each because you knew in what pass you would
+run debugify. Now running debugify-each will fill the output with PASS or FAIL
+without any information about the name of the pass.
+I authored a [[https://reviews.llvm.org/D46908][patch]] to fix that.
+
+Another problem is that when running debugify-each in one of the standard pipelines (~-O{1-3}~) it will
+fill the terminal with it's output -- both errors and whether the pass failed or passed
+the check-debugify.
+
+This is not the correct way a tool like debugify should work. A user should be able to 
+pipe opt's output to other tools while also using debugify-each. To remedy this
+another [[https://reviews.llvm.org/D46941][patch]] redirects the warnings and errors to =stderr= and as a follow-up
+debugify should dump it's results to a file.
