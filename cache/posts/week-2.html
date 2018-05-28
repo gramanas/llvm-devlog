@@ -1,0 +1,50 @@
+<p>
+This past days I focused on some missing Debug Loc that occurred at `store` instructions
+at the function prologue.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Preserving the scope</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Instructions on the function prologue are auto-generated and do not correspond the "real" code.
+Thus the Debug Location can't have a valid line number.
+</p>
+
+<p>
+But the Debug Location metadata contains scope information as well, witch is useful.
+Especially after the passes mix and mash the code to form the optimized module.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Background</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+While investigating the SROA pass for missing DI occurrences, there was a test with a `phi`
+induction that was missing Debug Loc. The problem was then narrowed down to a mem2reg call
+from SROA. As it turned out the mem2reg was correctly sourcing the `phi` debug location
+from the combined stores, so the problem had to be that there was to DI present at all.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Proposed Solution</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Hence this <a href="https://reviews.llvm.org/D47097">patch</a> was posted in phab.
+</p>
+
+<p>
+There is some talk about whether this change is wanted or not, since the 
+DI in the instructions of the function prologue is intended to be missing.
+</p>
+
+<p>
+Although `test1` clearly shows a phi with missing debug Loc that after the patch is
+applied no longer has this problem. 
+</p>
+</div>
+</div>
