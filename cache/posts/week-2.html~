@@ -1,5 +1,5 @@
 <p>
-This past days I focused on some missing Debug Loc that occurred at <code>store</code> instructions
+This past days I focused on some missing Debug Loc that occurred at `store` instructions
 at the function prologue.
 </p>
 
@@ -22,9 +22,9 @@ Especially after the passes mix and mash the code to form the optimized module.
 <h2 id="sec-2">Background</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-While investigating the SROA pass for missing DI occurrences, there was a test with a <code>phi</code>
+While investigating the SROA pass for missing DI occurrences, there was a test with a `phi`
 induction that was missing Debug Loc. The problem was then narrowed down to a mem2reg call
-from SROA. As it turned out the mem2reg was correctly sourcing the <code>phi</code> debug location
+from SROA. As it turned out the mem2reg was correctly sourcing the `phi` debug location
 from the combined stores, so the problem had to be that there was to DI present at all.
 </p>
 </div>
@@ -43,7 +43,7 @@ DI in the instructions of the function prologue is intended to be missing.
 </p>
 
 <p>
-Although <code>test1</code> clearly shows a phi with missing debug Loc that after the patch is
+Although `test1` clearly shows a phi with missing debug Loc that after the patch is
 applied no longer has this problem. 
 </p>
 </div>

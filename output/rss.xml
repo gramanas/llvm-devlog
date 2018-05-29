@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Mon, 28 May 2018 15:27:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 2</title><link>https://gramanas.github.io/posts/week-2/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
-This past days I focused on some missing Debug Loc that occurred at `store` instructions
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Tue, 29 May 2018 12:53:59 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Week 2</title><link>https://gramanas.github.io/posts/week-2/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+This past days I focused on some missing Debug Loc that occurred at &lt;code&gt;store&lt;/code&gt; instructions
 at the function prologue.
 &lt;/p&gt;
 
@@ -23,9 +23,9 @@ Especially after the passes mix and mash the code to form the optimized module.
 &lt;h2 id="sec-2"&gt;Background&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-2"&gt;
 &lt;p&gt;
-While investigating the SROA pass for missing DI occurrences, there was a test with a `phi`
+While investigating the SROA pass for missing DI occurrences, there was a test with a &lt;code&gt;phi&lt;/code&gt;
 induction that was missing Debug Loc. The problem was then narrowed down to a mem2reg call
-from SROA. As it turned out the mem2reg was correctly sourcing the `phi` debug location
+from SROA. As it turned out the mem2reg was correctly sourcing the &lt;code&gt;phi&lt;/code&gt; debug location
 from the combined stores, so the problem had to be that there was to DI present at all.
 &lt;/p&gt;
 &lt;/div&gt;
@@ -44,7 +44,7 @@ DI in the instructions of the function prologue is intended to be missing.
 &lt;/p&gt;
 
 &lt;p&gt;
-Although `test1` clearly shows a phi with missing debug Loc that after the patch is
+Although &lt;code&gt;test1&lt;/code&gt; clearly shows a phi with missing debug Loc that after the patch is
 applied no longer has this problem. 
 &lt;/p&gt;
 &lt;/div&gt;
