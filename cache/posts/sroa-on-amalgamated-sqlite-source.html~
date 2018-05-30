@@ -1,6 +1,6 @@
-<div id="outline-container-orgfe12420" class="outline-2">
-<h2 id="orgfe12420">Introduction</h2>
-<div class="outline-text-2" id="text-orgfe12420">
+<div id="outline-container-org329a4f5" class="outline-2">
+<h2 id="org329a4f5">Introduction</h2>
+<div class="outline-text-2" id="text-org329a4f5">
 <p>
 <code>SROA</code> is an early stage pass running at the very beginning of the pipeline in <code>-O{1,2,3}</code>.
 Greg Bedwell's report from his DExTer tool shows SROA on function as one of the major
@@ -23,11 +23,11 @@ opt -sroa -debugify-each sqlite -disable-output <span class="m">2</span>&gt; res
 </div>
 </div>
 
-<div id="outline-container-org4eee5f0" class="outline-2">
-<h2 id="org4eee5f0">Results</h2>
-<div class="outline-text-2" id="text-org4eee5f0">
+<div id="outline-container-orgb003879" class="outline-2">
+<h2 id="orgb003879">Results</h2>
+<div class="outline-text-2" id="text-orgb003879">
 <p>
-<a href="file:///sroa-results.csv">here</a> is the full results file.
+<a href="file:///sroa-results.html">here</a> is the full results file.
 </p>
 
 <p>
@@ -90,9 +90,9 @@ the instructions with missing Debug Loc are <code>phi</code> instructions.
 </div>
 </div>
 
-<div id="outline-container-org24da77b" class="outline-2">
-<h2 id="org24da77b">Conclusion</h2>
-<div class="outline-text-2" id="text-org24da77b">
+<div id="outline-container-org4697549" class="outline-2">
+<h2 id="org4697549">Conclusion</h2>
+<div class="outline-text-2" id="text-org4697549">
 <p>
 This implies sroa does a pretty good job of preserving debug values.
 Although it contradicts the DExTer results, this might be for a number of
