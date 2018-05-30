@@ -38,7 +38,7 @@ according to the error's message.
 |      1978 | 1100 |  878 |           5214 |                 75166 |
 
 What's worth noticing is that the only error that SROA produces is that of empty
-debug locations. No missing variables and dbg.value intrinsics.
+debug locations. It does not report any missing DILocalVariables or llvm.dbg.value intrinsics.
 Thus all of the 1100 SROA runs that failed are due to empty debug locations.
 
 Also, while skimming through the results file I noticed that the instructions with
@@ -53,6 +53,11 @@ the instructions with missing Debug Loc are ~phi~ instructions.
 
 * Conclusion
 
-This implies sroa does a pretty good job of preserving debug values.
-Although it contradicts the DExTer results, this might be for a number of
-reasons. E.g. it could score so low due to the DebugLoc loss.
+This implies SROA does a pretty good job of preserving debug values.
+
+The DExTer results are not in line with what I've found though. This might be for a number of
+reasons. E.g. it could score so low due to the DebugLoc loss. Also debugify doesn't 
+test the backend so it's going to detect a narrower set of issues.
+
+Do you have any ideas as to why this happens?
+Can you confirm the results?
