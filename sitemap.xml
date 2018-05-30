@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://gramanas.github.io/</loc>
-  <lastmod>2018-03-21T14:36:00Z</lastmod>
+  <lastmod>2018-05-30T12:04:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/2018/</loc>
@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://gramanas.github.io/archive.html</loc>
-  <lastmod>2018-05-28T15:27:00Z</lastmod>
+  <lastmod>2018-05-30T11:50:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/categories/</loc>
@@ -48,6 +48,10 @@
  <url>
   <loc>https://gramanas.github.io/posts/less-that-a-week-to-go/</loc>
   <lastmod>2018-05-10T00:29:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</loc>
+  <lastmod>2018-05-30T11:50:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/week-1-debugify-each/</loc>
