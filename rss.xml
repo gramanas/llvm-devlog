@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Wed, 30 May 2018 12:13:29 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SROA on amalgamated sqlite source</title><link>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org12770e3" class="outline-2"&gt;
-&lt;h2 id="org12770e3"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org12770e3"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Wed, 30 May 2018 15:18:05 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SROA on amalgamated sqlite source</title><link>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org378c6ad" class="outline-2"&gt;
+&lt;h2 id="org378c6ad"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org378c6ad"&gt;
 &lt;p&gt;
 &lt;code&gt;SROA&lt;/code&gt; is an early stage pass running at the very beginning of the pipeline in &lt;code&gt;-O{1,2,3}&lt;/code&gt;.
 Greg Bedwell's report from his DExTer tool shows SROA on function as one of the major
@@ -24,9 +24,9 @@ opt -sroa -debugify-each sqlite -disable-output &lt;span class="m"&gt;2&lt;/span
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1874aff" class="outline-2"&gt;
-&lt;h2 id="org1874aff"&gt;Results&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1874aff"&gt;
+&lt;div id="outline-container-org4c1bdb0" class="outline-2"&gt;
+&lt;h2 id="org4c1bdb0"&gt;Results&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4c1bdb0"&gt;
 &lt;p&gt;
 &lt;a href="https://gramanas.github.io/sroa-results.csv"&gt;Here&lt;/a&gt; is the full results file.
 &lt;/p&gt;
@@ -72,7 +72,7 @@ according to the error's message.
 
 &lt;p&gt;
 What's worth noticing is that the only error that SROA produces is that of empty
-debug locations. No missing variables and dbg.value intrinsics.
+debug locations. It does not report any missing DILocalVariables or llvm.dbg.value intrinsics.
 Thus all of the 1100 SROA runs that failed are due to empty debug locations.
 &lt;/p&gt;
 
@@ -91,13 +91,22 @@ the instructions with missing Debug Loc are &lt;code&gt;phi&lt;/code&gt; instruc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org43b4f6a" class="outline-2"&gt;
-&lt;h2 id="org43b4f6a"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org43b4f6a"&gt;
+&lt;div id="outline-container-orge1b8157" class="outline-2"&gt;
+&lt;h2 id="orge1b8157"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge1b8157"&gt;
 &lt;p&gt;
-This implies sroa does a pretty good job of preserving debug values.
-Although it contradicts the DExTer results, this might be for a number of
-reasons. E.g. it could score so low due to the DebugLoc loss.
+This implies SROA does a pretty good job of preserving debug values.
+&lt;/p&gt;
+
+&lt;p&gt;
+The DExTer results are not in line with what I've found though. This might be for a number of
+reasons. E.g. it could score so low due to the DebugLoc loss. Also debugify doesn't 
+test the backend so it's going to detect a narrower set of issues.
+&lt;/p&gt;
+
+&lt;p&gt;
+Do you have any ideas as to why this happens?
+Can you confirm the results?
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><guid>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</guid><pubDate>Wed, 30 May 2018 11:49:10 GMT</pubDate></item><item><title>Week 2</title><link>https://gramanas.github.io/posts/week-2/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;

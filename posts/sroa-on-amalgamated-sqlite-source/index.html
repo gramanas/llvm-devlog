@@ -78,9 +78,9 @@ culprits of">
     </div>
 
         </div>
-        <div id="outline-container-org12770e3" class="outline-2">
-<h2 id="org12770e3">Introduction</h2>
-<div class="outline-text-2" id="text-org12770e3">
+        <div id="outline-container-org378c6ad" class="outline-2">
+<h2 id="org378c6ad">Introduction</h2>
+<div class="outline-text-2" id="text-org378c6ad">
 <p>
 <code>SROA</code> is an early stage pass running at the very beginning of the pipeline in <code>-O{1,2,3}</code>.
 Greg Bedwell's report from his DExTer tool shows SROA on function as one of the major
@@ -103,9 +103,9 @@ opt -sroa -debugify-each sqlite -disable-output <span class="m">2</span>&gt; res
 </div>
 </div>
 
-<div id="outline-container-org1874aff" class="outline-2">
-<h2 id="org1874aff">Results</h2>
-<div class="outline-text-2" id="text-org1874aff">
+<div id="outline-container-org4c1bdb0" class="outline-2">
+<h2 id="org4c1bdb0">Results</h2>
+<div class="outline-text-2" id="text-org4c1bdb0">
 <p>
 <a href="https://gramanas.github.io/sroa-results.csv">Here</a> is the full results file.
 </p>
@@ -140,7 +140,7 @@ according to the error's message.
 </table>
 <p>
 What's worth noticing is that the only error that SROA produces is that of empty
-debug locations. No missing variables and dbg.value intrinsics.
+debug locations. It does not report any missing DILocalVariables or llvm.dbg.value intrinsics.
 Thus all of the 1100 SROA runs that failed are due to empty debug locations.
 </p>
 
@@ -159,13 +159,22 @@ the instructions with missing Debug Loc are <code>phi</code> instructions.
 </div>
 </div>
 
-<div id="outline-container-org43b4f6a" class="outline-2">
-<h2 id="org43b4f6a">Conclusion</h2>
-<div class="outline-text-2" id="text-org43b4f6a">
+<div id="outline-container-orge1b8157" class="outline-2">
+<h2 id="orge1b8157">Conclusion</h2>
+<div class="outline-text-2" id="text-orge1b8157">
 <p>
-This implies sroa does a pretty good job of preserving debug values.
-Although it contradicts the DExTer results, this might be for a number of
-reasons. E.g. it could score so low due to the DebugLoc loss.
+This implies SROA does a pretty good job of preserving debug values.
+</p>
+
+<p>
+The DExTer results are not in line with what I've found though. This might be for a number of
+reasons. E.g. it could score so low due to the DebugLoc loss. Also debugify doesn't 
+test the backend so it's going to detect a narrower set of issues.
+</p>
+
+<p>
+Do you have any ideas as to why this happens?
+Can you confirm the results?
 </p>
 </div>
 </div>
