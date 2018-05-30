@@ -28,7 +28,7 @@ The steps are as follows:
 
 * Results
 
-[[/sroa-results.csv][here]] is the full results file.
+[[/sroa-results.html][here]] is the full results file.
 
 The results were gather by ~grep -c~'ing the results file
 according to the error's message.
