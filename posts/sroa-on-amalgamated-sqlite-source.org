@@ -1,0 +1,58 @@
+#+BEGIN_COMMENT
+.. title: SROA on amalgamated sqlite source
+.. slug: sroa-on-amalgamated-sqlite-source
+.. date: 2018-05-30 14:49:10 UTC+03:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+
+* Introduction
+~SROA~ is an early stage pass running at the very beginning of the pipeline in ~-O{1,2,3}~.
+Greg Bedwell's report from his DExTer tool shows SROA on function as one of the major
+culprits of Debug Info loss.
+
+With debugify-each partially done I tried testing this on the amalgamated sqlite source.
+
+The steps are as follows:
+#+BEGIN_SRC sh
+  # generate IR file without debug info and optnone
+  clang -O0 -Xclang -disable-O0-optnone -S -emit-llvm sqlite3.c -o sqlite
+
+  # run opt
+  opt -sroa -debugify-each sqlite -disable-output 2> results
+#+END_SRC
+
+* Results
+
+[[/sroa-results.csv][here]] is the full results file.
+
+The results were gather by ~grep -c~'ing the results file
+according to the error's message.
+
+| SROA runs | FAIL | PASS | empty DebugLoc | Missing line warnings |
+|-----------+------+------+----------------+-----------------------|
+|      1978 | 1100 |  878 |           5214 |                 75166 |
+
+What's worth noticing is that the only error that SROA produces is that of empty
+debug locations. No missing variables and dbg.value intrinsics.
+Thus all of the 1100 SROA runs that failed are due to empty debug locations.
+
+Also, while skimming through the results file I noticed that the instructions with
+missing DL were ~phi~ instructions. To confirm this I did 
+
+#+BEGIN_SRC sh
+  grep "ERROR: Instruction" results | grep phi -c
+#+END_SRC
+
+witch gives us a result of ~5214~ and this means that all
+the instructions with missing Debug Loc are ~phi~ instructions.
+
+* Conclusion
+
+This implies sroa does a pretty good job of preserving debug values.
+Although it contradicts the DExTer results, this might be for a number of
+reasons. E.g. it could score so low due to the DebugLoc loss.
