@@ -1,0 +1,91 @@
+#+BEGIN_COMMENT
+.. title: IR-level invariants on debug info are being respected by SROA/mem2reg
+.. slug: ir-level-invariants-on-debug-info-are-being-respected-by-sroamem2reg
+.. date: 2018-06-06 17:00:29 UTC+03:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+
+* Introduction
+
+The past weeks the efforts were focused around the Scalar Replacement of
+Aggregates pass. This is an early stage pass and thus the amount of debug
+info loss should be minimized cause it impacts the whole compiler a lot more.
+
+Our contribution has been to systematically show that IR-level 
+invariants on debug info are being respected by SROA/mem2reg.
+
+The debugify pass with the newly implemented [[https://reviews.llvm.org/D46525][debugify-each]] option was the
+main tool used.
+
+* Process
+
+ - Run sroa through samples of IR
+ #+BEGIN_SRC sh
+   opt -debugify -sroa -check-debugify {ir_file.ll}
+ #+END_SRC
+ - When finding errors I created a reduced IR test case like [[https://reviews.llvm.org/D47097][here]] and [[https://reviews.llvm.org/D47720][here]].
+ - Fix the failing tests
+
+* Results
+
+I made a [[https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/][report]] after ruining SROA on the amalgamated sqlite source.
+The results were a clear indication that SROA was doing it's job just fine
+and the little instructions without DebugLoc were produced from clang and it
+wasn't SROA/mem2reg's fault.
+
+After applying the above clang patches the results are even better.
+
+* Comparing the results to [[https://llvm.org/devmtg/2018-04/slides/Bedwell-Measuring_the_User_Debugging_Experience.pdf][dexter]] ones
+
+Dexter scored SROA low.
+
+As Greg (dexter's creator) mentions the dexter results don't have
+to indicate that there is some kind of bug
+
+#+BEGIN_QUOTE
+ My standard disclaimer with all results from this tool is that a
+ non-perfect debugging experience score is not necessarily indicative of
+ something wrong, but should be looked at in conjunction with all the other
+ factors such as what the pass is trying to achieve optimization-wise.
+#+END_QUOTE
+
+And such is the case with SROA.
+
+A [[https://bugs.llvm.org/show_bug.cgi?id=37682][bug report]] has been filed explaining the problem.
+
+Basically after running SROA/mem2reg the optimizations will
+at many cases result in weird stepping behavior in the debugger.
+This is normal since that's the whole point of passes like SROA and
+LICM: to reduce the instructions by optimizing aggregates and loops.
+
+This is bad from the debug perspective and thus scores low on dexter.
+
+** Optimized vs unoptimized debugging
+
+An optimizers job is to make the code execute faster on the given 
+machine. This comes at the cost of modifying the code to a point
+that it no longer resembles the source material. Thus we rely on
+the descriptive power of the standard that is used to encode DI.
+
+Passes that move code around or shorten the execution paths like
+SROA and LICM should go to great lengths to preserve the debug 
+intrinsics that correspond the the name and value of the variables.
+It would be an unrealistic goal to try and keep the stepping behavior
+inside a debugger intact after running such passes. 
+
+Instead different optimization methods can be used when debugging
+is a high priority. Ones that don't move code around as much and of course
+result in longer execution times, but what they lose in speed they give
+back with a more robust debug experience.
+
+* Conclusion
+
+SROA does a very good job preserving all the important Debug Information
+that it's given. On the other hand it significantly impacts the debug
+user experience but there is nothing that can be done about it as this is 
+the nature of the transformation.
