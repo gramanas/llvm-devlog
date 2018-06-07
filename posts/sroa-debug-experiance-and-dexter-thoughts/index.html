@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>IR-level invariants on debug info are being respected by SROA/mem2reg | gramanas &gt;&gt; blog</title>
+<title>SROA debug experiance and dexter thoughts | gramanas &gt;&gt; blog</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" id="css_theme" href="../../assets/css/theme.gray.css" type="text/css">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
-<link rel="canonical" href="https://gramanas.github.io/posts/ir-level-invariants-on-debug-info-are-being-respected-by-sroamem2reg/">
+<link rel="canonical" href="https://gramanas.github.io/posts/sroa-debug-experiance-and-dexter-thoughts/">
 <!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="Anastasis Grammenos">
 <meta property="og:site_name" content="gramanas &gt;&gt; blog">
-<meta property="og:title" content="IR-level invariants on debug info are being respected by SROA/mem2reg">
-<meta property="og:url" content="https://gramanas.github.io/posts/ir-level-invariants-on-debug-info-are-being-respected-by-sroamem2reg/">
+<meta property="og:title" content="SROA debug experiance and dexter thoughts">
+<meta property="og:url" content="https://gramanas.github.io/posts/sroa-debug-experiance-and-dexter-thoughts/">
 <meta property="og:description" content="Introduction
 
 
@@ -63,7 +63,7 @@ info loss should be minimized cause it">
             
     <div class="post">
     
-    <h1 class="p-name entry-title" itemprop="headline name">IR-level invariants on debug info are being respected by SROA/mem2reg</h1>
+    <h1 class="p-name entry-title" itemprop="headline name">SROA debug experiance and dexter thoughts</h1>
 
         <div class="meta clearfix">
             <div class="authordate left">
@@ -78,9 +78,9 @@ info loss should be minimized cause it">
     </div>
 
         </div>
-        <div id="outline-container-orgbc863f2" class="outline-2">
-<h2 id="orgbc863f2">Introduction</h2>
-<div class="outline-text-2" id="text-orgbc863f2">
+        <div id="outline-container-org3374792" class="outline-2">
+<h2 id="org3374792">Introduction</h2>
+<div class="outline-text-2" id="text-org3374792">
 <p>
 The past weeks the efforts were focused around the Scalar Replacement of
 Aggregates pass. This is an early stage pass and thus the amount of debug
@@ -99,9 +99,9 @@ main tool used.
 </div>
 </div>
 
-<div id="outline-container-org91f2af0" class="outline-2">
-<h2 id="org91f2af0">Process</h2>
-<div class="outline-text-2" id="text-org91f2af0">
+<div id="outline-container-orgaaa3c3f" class="outline-2">
+<h2 id="orgaaa3c3f">Process</h2>
+<div class="outline-text-2" id="text-orgaaa3c3f">
 <ul class="org-ul">
 <li>Run sroa through samples of IR</li>
 </ul>
@@ -114,9 +114,9 @@ main tool used.
 </div>
 </div>
 
-<div id="outline-container-orge333df2" class="outline-2">
-<h2 id="orge333df2">Results</h2>
-<div class="outline-text-2" id="text-orge333df2">
+<div id="outline-container-orgd4a8bba" class="outline-2">
+<h2 id="orgd4a8bba">Results</h2>
+<div class="outline-text-2" id="text-orgd4a8bba">
 <p>
 I made a <a href="https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/">report</a> after ruining SROA on the amalgamated sqlite source.
 The results were a clear indication that SROA was doing it's job just fine
@@ -130,9 +130,9 @@ After applying the above clang patches the results are even better.
 </div>
 </div>
 
-<div id="outline-container-orgddeb39f" class="outline-2">
-<h2 id="orgddeb39f">Comparing the results to <a href="https://llvm.org/devmtg/2018-04/slides/Bedwell-Measuring_the_User_Debugging_Experience.pdf">dexter</a> ones</h2>
-<div class="outline-text-2" id="text-orgddeb39f">
+<div id="outline-container-org1bf8011" class="outline-2">
+<h2 id="org1bf8011">Comparing the results to <a href="https://llvm.org/devmtg/2018-04/slides/Bedwell-Measuring_the_User_Debugging_Experience.pdf">dexter</a> ones</h2>
+<div class="outline-text-2" id="text-org1bf8011">
 <p>
 Dexter scored SROA low.
 </p>
@@ -171,9 +171,9 @@ This is bad from the debug perspective and thus scores low on dexter.
 </p>
 </div>
 
-<div id="outline-container-orga7272e2" class="outline-3">
-<h3 id="orga7272e2">Optimized vs unoptimized debugging</h3>
-<div class="outline-text-3" id="text-orga7272e2">
+<div id="outline-container-org3ab449e" class="outline-3">
+<h3 id="org3ab449e">Optimized vs unoptimized debugging</h3>
+<div class="outline-text-3" id="text-org3ab449e">
 <p>
 An optimizers job is to make the code execute faster on the given 
 machine. This comes at the cost of modifying the code to a point
@@ -199,9 +199,9 @@ back with a more robust debug experience.
 </div>
 </div>
 
-<div id="outline-container-org901b629" class="outline-2">
-<h2 id="org901b629">Conclusion</h2>
-<div class="outline-text-2" id="text-org901b629">
+<div id="outline-container-orgefc1553" class="outline-2">
+<h2 id="orgefc1553">Conclusion</h2>
+<div class="outline-text-2" id="text-orgefc1553">
 <p>
 SROA does a very good job preserving all the important Debug Information
 that it's given. On the other hand it significantly impacts the debug
