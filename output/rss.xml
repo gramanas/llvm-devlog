@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Thu, 07 Jun 2018 10:33:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>IR-level invariants on debug info are being respected by SROA/mem2reg</title><link>https://gramanas.github.io/posts/ir-level-invariants-on-debug-info-are-being-respected-by-sroamem2reg/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-orgbc863f2" class="outline-2"&gt;
-&lt;h2 id="orgbc863f2"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgbc863f2"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Thu, 07 Jun 2018 10:37:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>SROA debug experiance and dexter thoughts</title><link>https://gramanas.github.io/posts/sroa-debug-experiance-and-dexter-thoughts/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org3374792" class="outline-2"&gt;
+&lt;h2 id="org3374792"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3374792"&gt;
 &lt;p&gt;
 The past weeks the efforts were focused around the Scalar Replacement of
 Aggregates pass. This is an early stage pass and thus the amount of debug
@@ -20,9 +20,9 @@ main tool used.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org91f2af0" class="outline-2"&gt;
-&lt;h2 id="org91f2af0"&gt;Process&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org91f2af0"&gt;
+&lt;div id="outline-container-orgaaa3c3f" class="outline-2"&gt;
+&lt;h2 id="orgaaa3c3f"&gt;Process&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgaaa3c3f"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Run sroa through samples of IR&lt;/li&gt;
 &lt;/ul&gt;
@@ -35,9 +35,9 @@ main tool used.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge333df2" class="outline-2"&gt;
-&lt;h2 id="orge333df2"&gt;Results&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge333df2"&gt;
+&lt;div id="outline-container-orgd4a8bba" class="outline-2"&gt;
+&lt;h2 id="orgd4a8bba"&gt;Results&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd4a8bba"&gt;
 &lt;p&gt;
 I made a &lt;a href="https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/"&gt;report&lt;/a&gt; after ruining SROA on the amalgamated sqlite source.
 The results were a clear indication that SROA was doing it's job just fine
@@ -51,9 +51,9 @@ After applying the above clang patches the results are even better.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgddeb39f" class="outline-2"&gt;
-&lt;h2 id="orgddeb39f"&gt;Comparing the results to &lt;a href="https://llvm.org/devmtg/2018-04/slides/Bedwell-Measuring_the_User_Debugging_Experience.pdf"&gt;dexter&lt;/a&gt; ones&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgddeb39f"&gt;
+&lt;div id="outline-container-org1bf8011" class="outline-2"&gt;
+&lt;h2 id="org1bf8011"&gt;Comparing the results to &lt;a href="https://llvm.org/devmtg/2018-04/slides/Bedwell-Measuring_the_User_Debugging_Experience.pdf"&gt;dexter&lt;/a&gt; ones&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1bf8011"&gt;
 &lt;p&gt;
 Dexter scored SROA low.
 &lt;/p&gt;
@@ -92,9 +92,9 @@ This is bad from the debug perspective and thus scores low on dexter.
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga7272e2" class="outline-3"&gt;
-&lt;h3 id="orga7272e2"&gt;Optimized vs unoptimized debugging&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga7272e2"&gt;
+&lt;div id="outline-container-org3ab449e" class="outline-3"&gt;
+&lt;h3 id="org3ab449e"&gt;Optimized vs unoptimized debugging&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3ab449e"&gt;
 &lt;p&gt;
 An optimizers job is to make the code execute faster on the given 
 machine. This comes at the cost of modifying the code to a point
@@ -120,9 +120,9 @@ back with a more robust debug experience.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org901b629" class="outline-2"&gt;
-&lt;h2 id="org901b629"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org901b629"&gt;
+&lt;div id="outline-container-orgefc1553" class="outline-2"&gt;
+&lt;h2 id="orgefc1553"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgefc1553"&gt;
 &lt;p&gt;
 SROA does a very good job preserving all the important Debug Information
 that it's given. On the other hand it significantly impacts the debug
@@ -130,7 +130,7 @@ user experience but there is nothing that can be done about it as this is
 the nature of the transformation.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/ir-level-invariants-on-debug-info-are-being-respected-by-sroamem2reg/</guid><pubDate>Wed, 06 Jun 2018 14:00:29 GMT</pubDate></item><item><title>SROA on amalgamated sqlite source</title><link>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org378c6ad" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/sroa-debug-experiance-and-dexter-thoughts/</guid><pubDate>Wed, 06 Jun 2018 14:00:29 GMT</pubDate></item><item><title>SROA on amalgamated sqlite source</title><link>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org378c6ad" class="outline-2"&gt;
 &lt;h2 id="org378c6ad"&gt;Introduction&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org378c6ad"&gt;
 &lt;p&gt;
