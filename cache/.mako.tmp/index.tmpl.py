@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1528367868.558695
+_modified_time = 1528469639.235854
 _enable_loop = True
 _template_filename = 'themes/lotabout/templates/index.tmpl'
 _template_uri = 'index.tmpl'
@@ -36,9 +36,9 @@ def render_body(context,**pageargs):
         _link = context.get('_link', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        posts = context.get('posts', UNDEFINED)
-        theme_tag = context.get('theme_tag', UNDEFINED)
         helper = _mako_get_namespace(context, 'helper')
+        theme_tag = context.get('theme_tag', UNDEFINED)
+        posts = context.get('posts', UNDEFINED)
         comments = _mako_get_namespace(context, 'comments')
         __M_writer = context.writer()
         __M_writer('\n')
@@ -60,9 +60,9 @@ def render_content(context,**pageargs):
         _link = context.get('_link', UNDEFINED)
         def content():
             return render_content(context)
-        posts = context.get('posts', UNDEFINED)
-        theme_tag = context.get('theme_tag', UNDEFINED)
         helper = _mako_get_namespace(context, 'helper')
+        theme_tag = context.get('theme_tag', UNDEFINED)
+        posts = context.get('posts', UNDEFINED)
         comments = _mako_get_namespace(context, 'comments')
         __M_writer = context.writer()
         __M_writer('\n\n\n')

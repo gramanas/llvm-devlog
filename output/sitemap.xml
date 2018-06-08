@@ -46,16 +46,16 @@
   <lastmod>2018-05-03T07:58:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/ir-level-invariants-on-debug-info-are-being-respected-by-sroamem2reg/</loc>
-  <lastmod>2018-06-06T23:53:00Z</lastmod>
- </url>
- <url>
   <loc>https://gramanas.github.io/posts/less-that-a-week-to-go/</loc>
   <lastmod>2018-05-10T00:29:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/sroa-debug-experiance-and-dexter-thoughts/</loc>
   <lastmod>2018-06-07T10:37:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://gramanas.github.io/posts/sroa-debug-experience-and-dexter-thoughts/</loc>
+  <lastmod>2018-06-08T14:53:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</loc>

@@ -1,6 +1,6 @@
 #+BEGIN_COMMENT
-.. title: SROA debug experiance and dexter thoughts
-.. slug: sroa-debug-experiance-and-dexter-thoughts
+.. title: SROA debug experience and dexter thoughts
+.. slug: sroa-debug-experience-and-dexter-thoughts
 .. date: 2018-06-06 17:00:29 UTC+03:00
 .. tags: 
 .. category: 

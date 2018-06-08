@@ -1,0 +1,132 @@
+<div id="outline-container-org6f46e3b" class="outline-2">
+<h2 id="org6f46e3b">Introduction</h2>
+<div class="outline-text-2" id="text-org6f46e3b">
+<p>
+The past weeks the efforts were focused around the Scalar Replacement of
+Aggregates pass. This is an early stage pass and thus the amount of debug
+info loss should be minimized cause it impacts the whole compiler a lot more.
+</p>
+
+<p>
+Our contribution has been to systematically show that IR-level 
+invariants on debug info are being respected by SROA/mem2reg.
+</p>
+
+<p>
+The debugify pass with the newly implemented <a href="https://reviews.llvm.org/D46525">debugify-each</a> option was the
+main tool used.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org549de8f" class="outline-2">
+<h2 id="org549de8f">Process</h2>
+<div class="outline-text-2" id="text-org549de8f">
+<ul class="org-ul">
+<li>Run sroa through samples of IR</li>
+</ul>
+<div class="highlight"><pre><span></span> opt -debugify -sroa -check-debugify <span class="o">{</span>ir_file.ll<span class="o">}</span>
+</pre></div>
+<ul class="org-ul">
+<li>When finding errors I created a reduced IR test case like <a href="https://reviews.llvm.org/D47097">here</a> and <a href="https://reviews.llvm.org/D47720">here</a>.</li>
+<li>Fix the failing tests</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org66c05c4" class="outline-2">
+<h2 id="org66c05c4">Results</h2>
+<div class="outline-text-2" id="text-org66c05c4">
+<p>
+I made a <a href="https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/">report</a> after ruining SROA on the amalgamated sqlite source.
+The results were a clear indication that SROA was doing it's job just fine
+and the little instructions without DebugLoc were produced from clang and it
+wasn't SROA/mem2reg's fault.
+</p>
+
+<p>
+After applying the above clang patches the results are even better.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfbe68f2" class="outline-2">
+<h2 id="orgfbe68f2">Comparing the results to <a href="https://llvm.org/devmtg/2018-04/slides/Bedwell-Measuring_the_User_Debugging_Experience.pdf">dexter</a> ones</h2>
+<div class="outline-text-2" id="text-orgfbe68f2">
+<p>
+Dexter scored SROA low.
+</p>
+
+<p>
+As Greg (dexter's creator) mentions the dexter results don't have
+to indicate that there is some kind of bug
+</p>
+
+<blockquote>
+<p>
+My standard disclaimer with all results from this tool is that a
+non-perfect debugging experience score is not necessarily indicative of
+something wrong, but should be looked at in conjunction with all the other
+factors such as what the pass is trying to achieve optimization-wise.
+</p>
+</blockquote>
+
+<p>
+And such is the case with SROA.
+</p>
+
+<p>
+A <a href="https://bugs.llvm.org/show_bug.cgi?id=37682">bug report</a> has been filed explaining the problem.
+</p>
+
+<p>
+Basically after running SROA/mem2reg the optimizations will
+at many cases result in weird stepping behavior in the debugger.
+This is normal since that's the whole point of passes like SROA and
+LICM: to reduce the instructions by optimizing aggregates and loops.
+</p>
+
+<p>
+This is bad from the debug perspective and thus scores low on dexter.
+</p>
+</div>
+
+<div id="outline-container-orgae29aae" class="outline-3">
+<h3 id="orgae29aae">Optimized vs unoptimized debugging</h3>
+<div class="outline-text-3" id="text-orgae29aae">
+<p>
+An optimizers job is to make the code execute faster on the given 
+machine. This comes at the cost of modifying the code to a point
+that it no longer resembles the source material. Thus we rely on
+the descriptive power of the standard that is used to encode DI.
+</p>
+
+<p>
+Passes that move code around or shorten the execution paths like
+SROA and LICM should go to great lengths to preserve the debug 
+intrinsics that correspond the the name and value of the variables.
+It would be an unrealistic goal to try and keep the stepping behavior
+inside a debugger intact after running such passes. 
+</p>
+
+<p>
+Instead different optimization methods can be used when debugging
+is a high priority. Ones that don't move code around as much and of course
+result in longer execution times, but what they lose in speed they give
+back with a more robust debug experience.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1f4f0a5" class="outline-2">
+<h2 id="org1f4f0a5">Conclusion</h2>
+<div class="outline-text-2" id="text-org1f4f0a5">
+<p>
+SROA does a very good job preserving all the important Debug Information
+that it's given. On the other hand it significantly impacts the debug
+user experience but there is nothing that can be done about it as this is 
+the nature of the transformation.
+</p>
+</div>
+</div>
