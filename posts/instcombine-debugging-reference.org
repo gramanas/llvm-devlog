@@ -1,0 +1,58 @@
+#+BEGIN_COMMENT
+.. title: InstCombine debugging reference
+.. slug: instcombine-debugging-reference
+.. date: 2018-06-16 12:08:31 UTC+03:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+
+Instruction Combine is a crucial pass occurring in the middle of the pipeline.
+It consolidates redundant instructions and while doing that it doesn't always get
+the Debug Info right.
+
+* Code structure
+The pass is split into many different files. The class definition
+along with the definition of the instruction work-list is 
+in ~llvm/include/llvm/Transforms/InstCombine~ while the implementation lies
+in ~llvm/lib/Transforms/InstCombine~. The main cpp file is 
+~/home/gramanas/code/llvm/lib/Transforms/InstCombine/InstructionCombining.cpp~
+
+The pass runs on a function level.
+
+* Debugging
+
+In order to see what the pass is doing step by step use this:
+
+#+BEGIN_SRC sh
+opt -debug-only=instcombine -instcombine sample.ll
+#+END_SRC
+
+* Example
+
+The following llvm-ir snippet:
+
+#+BEGIN_SRC llvm
+  define <2 x i64> @test3(<2 x i64> %A) {
+    %trunc = trunc <2 x i64> %A to <2 x i32>
+    %and = and <2 x i32> %trunc, <i32 23, i32 42>
+    %zext = zext <2 x i32> %and to <2 x i64>
+    ret <2 x i64> %zext
+  }
+#+END_SRC
+
+gets reduced to this:
+
+#+BEGIN_SRC llvm
+  define <2 x i64> @test3(<2 x i64> %A) {                                                                                                                                              
+    %and = and <2 x i64> %A, <i64 23, i64 42>                                                                                                                                          
+    ret <2 x i64> %and                                                                                                                                                                 
+  }
+#+END_SRC
+
+after running ~instcombine~ on it.
+
+Sadly this also loses two debug.value intrinsics.
