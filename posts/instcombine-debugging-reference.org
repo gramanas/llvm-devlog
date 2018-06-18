@@ -55,4 +55,8 @@ gets reduced to this:
 
 after running ~instcombine~ on it.
 
-Sadly this also loses two debug.value intrinsics.
+We are left with two dbg.value intrinsics missing.
+The ~%trunc~ as well as the ~%zext~ instructions,
+since those are the ones that instCombine optimizes.
+
+

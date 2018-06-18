@@ -4,9 +4,9 @@ It consolidates redundant instructions and while doing that it doesn't always ge
 the Debug Info right.
 </p>
 
-<div id="outline-container-orgc862890" class="outline-2">
-<h2 id="orgc862890">Code structure</h2>
-<div class="outline-text-2" id="text-orgc862890">
+<div id="outline-container-org00f6cbe" class="outline-2">
+<h2 id="org00f6cbe">Code structure</h2>
+<div class="outline-text-2" id="text-org00f6cbe">
 <p>
 The pass is split into many different files. The class definition
 along with the definition of the instruction work-list is 
@@ -21,21 +21,21 @@ The pass runs on a function level.
 </div>
 </div>
 
-<div id="outline-container-org87ab1c0" class="outline-2">
-<h2 id="org87ab1c0">Debugging</h2>
-<div class="outline-text-2" id="text-org87ab1c0">
+<div id="outline-container-orgf1cceee" class="outline-2">
+<h2 id="orgf1cceee">Debugging</h2>
+<div class="outline-text-2" id="text-orgf1cceee">
 <p>
 In order to see what the pass is doing step by step use this:
 </p>
 
-<div class="highlight"><pre><span></span>opt -debug-only<span class="o">=</span>instcombine
+<div class="highlight"><pre><span></span>opt -debug-only<span class="o">=</span>instcombine -instcombine sample.ll
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-orga39f253" class="outline-2">
-<h2 id="orga39f253">Example</h2>
-<div class="outline-text-2" id="text-orga39f253">
+<div id="outline-container-org442e0c9" class="outline-2">
+<h2 id="org442e0c9">Example</h2>
+<div class="outline-text-2" id="text-org442e0c9">
 <p>
 The following llvm-ir snippet:
 </p>
