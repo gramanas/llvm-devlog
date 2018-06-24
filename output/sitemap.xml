@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://gramanas.github.io/archive.html</loc>
-  <lastmod>2018-06-16T09:22:00Z</lastmod>
+  <lastmod>2018-06-24T16:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/categories/</loc>
@@ -36,6 +36,10 @@
  <url>
   <loc>https://gramanas.github.io/posts/compiling-llvm/</loc>
   <lastmod>2018-05-03T07:58:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://gramanas.github.io/posts/debug-information-builder-and-dwarf-expressions/</loc>
+  <lastmod>2018-06-24T16:56:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/debug-information/</loc>

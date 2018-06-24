@@ -4,9 +4,9 @@ It consolidates redundant instructions and while doing that it doesn't always ge
 the Debug Info right.
 </p>
 
-<div id="outline-container-org00f6cbe" class="outline-2">
-<h2 id="org00f6cbe">Code structure</h2>
-<div class="outline-text-2" id="text-org00f6cbe">
+<div id="outline-container-orgf4de3eb" class="outline-2">
+<h2 id="orgf4de3eb">Code structure</h2>
+<div class="outline-text-2" id="text-orgf4de3eb">
 <p>
 The pass is split into many different files. The class definition
 along with the definition of the instruction work-list is 
@@ -21,9 +21,9 @@ The pass runs on a function level.
 </div>
 </div>
 
-<div id="outline-container-orgf1cceee" class="outline-2">
-<h2 id="orgf1cceee">Debugging</h2>
-<div class="outline-text-2" id="text-orgf1cceee">
+<div id="outline-container-org70bffda" class="outline-2">
+<h2 id="org70bffda">Debugging</h2>
+<div class="outline-text-2" id="text-org70bffda">
 <p>
 In order to see what the pass is doing step by step use this:
 </p>
@@ -33,9 +33,9 @@ In order to see what the pass is doing step by step use this:
 </div>
 </div>
 
-<div id="outline-container-org442e0c9" class="outline-2">
-<h2 id="org442e0c9">Example</h2>
-<div class="outline-text-2" id="text-org442e0c9">
+<div id="outline-container-org98555f6" class="outline-2">
+<h2 id="org98555f6">Example</h2>
+<div class="outline-text-2" id="text-org98555f6">
 <p>
 The following llvm-ir snippet:
 </p>
@@ -63,7 +63,9 @@ after running <code>instcombine</code> on it.
 </p>
 
 <p>
-Sadly this also loses two debug.value intrinsics.
+We are left with two dbg.value intrinsics missing.
+The <code>%trunc</code> as well as the <code>%zext</code> instructions,
+since those are the ones that instCombine optimizes.
 </p>
 </div>
 </div>
