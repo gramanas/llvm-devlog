@@ -62,7 +62,7 @@ we try to incorporate a RUN line like ~opt -debugify -culprit-pass~,
 to the existing tests and add checks for the preservation of DI.
 
 An important part of the ~-debugify~ pass is that it should be stable enough
-to enable it's usage on regression tests..
+to enable it's usage on regression tests.
 
 ** Finding the test files to modify
 
@@ -95,8 +95,8 @@ Then I modify the bash loop from [[https://gramanas.github.io/posts/finding-debu
 
 Then reading through the resulting file, you can clearly see in what test file
 there was an assertion, and that means there is a test there that can be used
-to test the DI preservation.
+to check the DI preservation.
 
-Also the assertion backtrace also shows in what IR function the assertion was
+The assertion backtrace also shows in what IR function the assertion was
 triggered so it's easy to find what function to add the DI preservation tests at,
 even if the file has many different tests.

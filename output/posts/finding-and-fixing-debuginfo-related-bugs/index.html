@@ -104,9 +104,9 @@ since I gained valuable experiences!
 Let's talk about those now.
 </p>
 
-<div id="outline-container-orgfa81cc0" class="outline-2">
-<h2 id="orgfa81cc0">Finding bugs</h2>
-<div class="outline-text-2" id="text-orgfa81cc0">
+<div id="outline-container-orgc26b797" class="outline-2">
+<h2 id="orgc26b797">Finding bugs</h2>
+<div class="outline-text-2" id="text-orgc26b797">
 <p>
 Greg has created a meta <a href="https://bugs.llvm.org/show_bug.cgi?id=37953">bug</a> to group debugify failures across all passes
 and have a centralized reference point.
@@ -119,9 +119,9 @@ source instead of relying on already crated IR.
 </p>
 </div>
 
-<div id="outline-container-org1c6e31f" class="outline-3">
-<h3 id="org1c6e31f">Zeroing to the problem</h3>
-<div class="outline-text-3" id="text-org1c6e31f">
+<div id="outline-container-org1d6f917" class="outline-3">
+<h3 id="org1d6f917">Zeroing to the problem</h3>
+<div class="outline-text-3" id="text-org1d6f917">
 <p>
 First, one has to understand at least what the description of the culprit pass
 is, and how it's used to optimize code.
@@ -144,9 +144,9 @@ in place yet. Vedant is tackling this by first <a href="https://reviews.llvm.org
 </div>
 </div>
 
-<div id="outline-container-orgf00022d" class="outline-2">
-<h2 id="orgf00022d">Testing that it works</h2>
-<div class="outline-text-2" id="text-orgf00022d">
+<div id="outline-container-org90daa28" class="outline-2">
+<h2 id="org90daa28">Testing that it works</h2>
+<div class="outline-text-2" id="text-org90daa28">
 <p>
 Another important thing after fixing those bugs, is adding regression tests
 to make sure they won't appear again. To that end the <code>-debugify</code> pass 
@@ -163,13 +163,13 @@ to the existing tests and add checks for the preservation of DI.
 
 <p>
 An important part of the <code>-debugify</code> pass is that it should be stable enough
-to enable it's usage on regression tests..
+to enable it's usage on regression tests.
 </p>
 </div>
 
-<div id="outline-container-orge289a82" class="outline-3">
-<h3 id="orge289a82">Finding the test files to modify</h3>
-<div class="outline-text-3" id="text-orge289a82">
+<div id="outline-container-orgdb22c6e" class="outline-3">
+<h3 id="orgdb22c6e">Finding the test files to modify</h3>
+<div class="outline-text-3" id="text-orgdb22c6e">
 <p>
 Another cool trick Vedant taught me is the usage of assertions to check
 whether a sample input IR is passing through the code we juts modified.
@@ -208,11 +208,11 @@ Then I modify the bash loop from <a href="https://gramanas.github.io/posts/findi
 <p>
 Then reading through the resulting file, you can clearly see in what test file
 there was an assertion, and that means there is a test there that can be used
-to test the DI preservation.
+to check the DI preservation.
 </p>
 
 <p>
-Also the assertion backtrace also shows in what IR function the assertion was
+The assertion backtrace also shows in what IR function the assertion was
 triggered so it's easy to find what function to add the DI preservation tests at,
 even if the file has many different tests.
 </p>
