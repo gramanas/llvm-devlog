@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://gramanas.github.io/archive.html</loc>
-  <lastmod>2018-06-27T10:02:00Z</lastmod>
+  <lastmod>2018-06-29T15:07:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/categories/</loc>
@@ -38,12 +38,12 @@
   <lastmod>2018-05-03T07:58:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/debug-information-builder-and-dwarf-expressions/</loc>
-  <lastmod>2018-06-24T16:56:00Z</lastmod>
- </url>
- <url>
   <loc>https://gramanas.github.io/posts/debug-information/</loc>
   <lastmod>2018-05-03T07:58:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://gramanas.github.io/posts/finding-and-fixing-debuginfo-related-bugs/</loc>
+  <lastmod>2018-06-29T15:07:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/finding-debuginfo-loss/</loc>
