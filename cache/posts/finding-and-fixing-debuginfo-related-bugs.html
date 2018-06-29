@@ -1,0 +1,141 @@
+<p>
+The last few weeks that I haven't posted any updates have been pretty laborsome.
+</p>
+
+<p>
+For one, I had finals in the university, and all of the five classes I was being tested on
+were on the same week. This was both good and bad. Good for GSoC because it didn't
+consume much of the month, but OTOH bad for my performance because I was giving
+one exam after the other.
+</p>
+
+<p>
+So far the results came for 2 classes and I passed them both, so that's good!
+</p>
+
+<p>
+On the LLVM side of things, I was struggling with an InstCombine <a href="https://reviews.llvm.org/D48331">bug</a> in 
+debug intrinsics loss. It took way more time than anticipated to figure out
+what was going on, and how we should fix it. All this time wasn't wasted though,
+since I gained valuable experiences! 
+</p>
+
+<p>
+Let's talk about those now.
+</p>
+
+<div id="outline-container-orgfa81cc0" class="outline-2">
+<h2 id="orgfa81cc0">Finding bugs</h2>
+<div class="outline-text-2" id="text-orgfa81cc0">
+<p>
+Greg has created a meta <a href="https://bugs.llvm.org/show_bug.cgi?id=37953">bug</a> to group debugify failures across all passes
+and have a centralized reference point.
+</p>
+
+<p>
+I've already made a <a href="https://gramanas.github.io/posts/finding-debuginfo-loss/">post</a> describing a way to find such bugs. Although
+Greg's process seems to be a bit different, since it starts from the 
+source instead of relying on already crated IR.
+</p>
+</div>
+
+<div id="outline-container-org1c6e31f" class="outline-3">
+<h3 id="org1c6e31f">Zeroing to the problem</h3>
+<div class="outline-text-3" id="text-org1c6e31f">
+<p>
+First, one has to understand at least what the description of the culprit pass
+is, and how it's used to optimize code.
+</p>
+
+<p>
+Then in the relatively more simple case of missing Debug Location, it's a matter
+of running opt with the culprit pass through a debugger, stopping whenever the 
+instruction with the missing DL is created and reading through the backtrace 
+to find when and where in the code the DL is dropped. Usually the fix is a 
+pretty simple one like on <a href="https://reviews.llvm.org/rL335904">r335904</a> and <a href="https://reviews.llvm.org/D48769">D48769</a>.
+</p>
+
+<p>
+In the case of a missing variable though it's more complex. In the aforementioned
+InstCombine <a href="https://reviews.llvm.org/D48331">bug</a> for example the fix is not clear at all, since the proper API is not
+in place yet. Vedant is tackling this by first <a href="https://reviews.llvm.org/rL335144">creating</a> a utility and currently <a href="https://reviews.llvm.org/D48676">enhancing</a> it.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf00022d" class="outline-2">
+<h2 id="orgf00022d">Testing that it works</h2>
+<div class="outline-text-2" id="text-orgf00022d">
+<p>
+Another important thing after fixing those bugs, is adding regression tests
+to make sure they won't appear again. To that end the <code>-debugify</code> pass 
+is especially helpful. (NOTE: <code>-debugify</code> is the pass that applies 
+Debug Info to every instruction on a module, <code>-check-debugify</code> is the one
+that actually does the checks for DI preservation, after a pass has run)
+</p>
+
+<p>
+Most of the above patches contain this new kinds of test. Basically
+we try to incorporate a RUN line like <code>opt -debugify -culprit-pass</code>,
+to the existing tests and add checks for the preservation of DI.
+</p>
+
+<p>
+An important part of the <code>-debugify</code> pass is that it should be stable enough
+to enable it's usage on regression tests..
+</p>
+</div>
+
+<div id="outline-container-orge289a82" class="outline-3">
+<h3 id="orge289a82">Finding the test files to modify</h3>
+<div class="outline-text-3" id="text-orge289a82">
+<p>
+Another cool trick Vedant taught me is the usage of assertions to check
+whether a sample input IR is passing through the code we juts modified.
+</p>
+
+<p>
+For example in <a href="https://reviews.llvm.org/rL335904">r335904</a> and <a href="https://reviews.llvm.org/D48769">D48769</a>, after I found where in the code the DL
+was dropped, using lldb and the sample code from Greg's report, I had to find 
+an existing test that went through the same code path as Greg's sample code.
+</p>
+
+<p>
+In the case of the LoopVectorize pass, there are <b><b>a lot</b></b> of tests to look through.
+The following assertion trick makes the process as simple as it could ever get.
+</p>
+
+<p>
+First I add a failing assertion next to the code I modified:
+</p>
+
+<div class="highlight"><pre><span></span><span class="n">NewAI</span><span class="o">-&gt;</span><span class="n">setDebugLoc</span><span class="p">(</span><span class="n">AI</span><span class="p">.</span><span class="n">getDebugLoc</span><span class="p">());</span>
+<span class="n">assert</span><span class="p">(</span><span class="nb">false</span> <span class="o">&amp;&amp;</span> <span class="s">&quot;gotcha&quot;</span><span class="p">);</span>
+</pre></div>
+
+<p>
+Then I modify the bash loop from <a href="https://gramanas.github.io/posts/finding-debuginfo-loss/">here</a> to just run the pass over all the tests.
+</p>
+
+<div class="highlight"><pre><span></span><span class="k">for</span> i in <span class="k">$(</span>ls ~/code/llvm/test/Culprit/Pass/*.ll -1<span class="k">)</span><span class="p">;</span> <span class="k">do</span> 
+    <span class="nb">echo</span> -e <span class="nv">$i</span><span class="s2">&quot;:\n-------&quot;</span><span class="p">;</span> 
+    opt -cuplrit-pass -disable-output <span class="nv">$i</span><span class="p">;</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;-------\n&quot;</span><span class="p">;</span> 
+<span class="k">done</span> &gt; results <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</pre></div>
+
+<p>
+Then reading through the resulting file, you can clearly see in what test file
+there was an assertion, and that means there is a test there that can be used
+to test the DI preservation.
+</p>
+
+<p>
+Also the assertion backtrace also shows in what IR function the assertion was
+triggered so it's easy to find what function to add the DI preservation tests at,
+even if the file has many different tests.
+</p>
+</div>
+</div>
+</div>
