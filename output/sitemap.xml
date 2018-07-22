@@ -7,70 +7,66 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://gramanas.github.io/</loc>
-  <lastmod>2018-05-30T12:13:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/2018/</loc>
-  <lastmod>2018-03-21T14:36:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/archive.html</loc>
-  <lastmod>2018-06-29T15:07:00Z</lastmod>
+  <lastmod>2018-07-19T15:09:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/categories/</loc>
-  <lastmod>2018-03-21T14:36:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/galleries/</loc>
-  <lastmod>2018-03-21T14:36:00Z</lastmod>
- </url>
- <url>
-  <loc>https://gramanas.github.io/listings/</loc>
-  <lastmod>2018-03-21T14:36:00Z</lastmod>
+  <loc>https://gramanas.github.io/posts/broken-pc-loopvectorize-and-documentation/</loc>
+  <lastmod>2018-07-19T18:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/community-bonding/</loc>
-  <lastmod>2018-05-03T07:58:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/compiling-llvm/</loc>
-  <lastmod>2018-05-03T07:58:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/debug-information/</loc>
-  <lastmod>2018-05-03T07:58:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/finding-and-fixing-debuginfo-related-bugs/</loc>
-  <lastmod>2018-06-29T15:07:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/finding-debuginfo-loss/</loc>
-  <lastmod>2018-05-03T07:58:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/instcombine-debugging-reference/</loc>
-  <lastmod>2018-06-16T09:22:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/less-that-a-week-to-go/</loc>
-  <lastmod>2018-05-10T00:29:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/sroa-debug-experience-and-dexter-thoughts/</loc>
-  <lastmod>2018-06-08T14:53:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</loc>
-  <lastmod>2018-05-30T11:50:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/week-1-debugify-each/</loc>
-  <lastmod>2018-05-16T14:55:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/posts/week-2/</loc>
-  <lastmod>2018-05-28T15:27:00Z</lastmod>
+  <lastmod>2018-07-19T15:05:00Z</lastmod>
  </url>
 </urlset>

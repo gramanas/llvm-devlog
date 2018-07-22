@@ -1,0 +1,91 @@
+<p>
+It has been quite some time since I last posted. 
+My computer has reached EOL and I am in the process
+of getting a new one up and running.
+</p>
+
+<p>
+The past weeks, I've been working through a VPS
+graciously provided to me by my university, but sadly it has
+many cons. For starters it could only run CentOS 6 or 7.
+I went with the latter but it hardly made any difference
+in terms of the packages being too old for a proper llvm
+development experience.
+</p>
+
+<p>
+So, I had to compile a lot of the software like cmake
+in order to get it working with the current llvm dev setup.
+I also had to compile a recent version of emacs
+( &gt;= 25.1 ) in order to be able to run the required stuff
+I use to navigate the code base.
+</p>
+
+<p>
+When I had finally compiled clang I realized the I couldn't debug
+it with a 10 year old gdb. While looking for answers online
+<code>scl</code> was my Deus Ex Machina. It's a redhat tool and a shortcut for
+Software CoLlections. It came with an extra repo for yum, though it, 
+I could download precompiled versions of the gnu dev toolset 7
+(gcc, gdb, etc.) and have them alongside the centOS 7 defaults. 
+It works a bit like a virtualenv does for python,
+issuing a command that changes environment variables to point
+to the newer software installed under <code>/opt</code>. So far it works
+perfectly so I didn't bother looking more into it, 
+since it's just a means to an end.
+</p>
+
+<p>
+It's not the best experience but it will be more than enough
+until my new PC is set up. Connecting to it requires me to first
+connect to the university VPN which makes browsing a bit slow, and
+since the VPS service is pretty much at it's infancy things tend to
+not work properly sometimes. Thankfully I didn't have any major 
+setbacks due to this.
+</p>
+
+<div id="outline-container-org9e9f0b8" class="outline-2">
+<h2 id="org9e9f0b8">LoopVectorize</h2>
+<div class="outline-text-2" id="text-org9e9f0b8">
+<p>
+These past weeks since my last post, beside the afformentioned,
+I worked on some DI related bugs in the LoopVectorize pass.
+</p>
+
+<p>
+It's a fairly complicated pass that, due to it's nature, 
+currently produces quite a lot of debugify errors. Also there are some
+fairly old (2013) and confusing functions that handle DebugLoc,
+but don't seem to do so using the establised API and are also
+members of the LoopVectorize family of classes (while they would
+fit more in a shared Utility class).
+</p>
+
+<p>
+These patches are <a href="https://reviews.llvm.org/D48769">D48769</a>, <a href="https://reviews.llvm.org/D48968">D48968</a> and <a href="https://reviews.llvm.org/D49347">D49347</a>. The last one is WIP
+and also highlighs one of the confusing functions I mentioned.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcadf0b5" class="outline-2">
+<h2 id="orgcadf0b5">Documentation update</h2>
+<div class="outline-text-2" id="text-orgcadf0b5">
+<p>
+Even projects with a tiny amount of contributors can benefit hugely
+from good documentation. These benefits are multiplied when huge
+projects like llvm implement this. A very good example is the 
+<a href="https://llvm.org/docs/LangRef.html">LLVM Language Reference Manual</a> as well as the
+<a href="https://llvm.org/docs/GettingStarted.html">Getting Started with the LLVM System</a> page which both helped me
+immensly while trying to learn my way around llvm (they are both
+bookmars on my firefox toolbar atm!)
+</p>
+
+<p>
+To that end I wrote some <a href="https://llvm.org/docs/SourceLevelDebugging.html#testing-debug-info-preservation-in-optimizations">documentation</a> about debugify and how to use it
+to find and test for DI related bugs. Helping with streamlining the
+testing of such errors and hoping that future pass developers will
+have these in mind when desinging the transformations.
+</p>
+</div>
+</div>
