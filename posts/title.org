@@ -1,0 +1,21 @@
+#+BEGIN_COMMENT
+.. title: title
+.. slug: title
+.. date: 2018-07-27 08:44:40 UTC+03:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+This week, I am struggling with yet another ~InstCombine~ bug. Just when I think I've found the
+solution it turns out there is more to it.
+
+It started as a suggestion for a patch by Vedant when he said I could use the new 
+replaceAllDebugUsesWith() routine in a common cast transformation case. Specifically
+while casting a PHI it might be possible to fold the cast into the PHI.
+
+~foldOpIntoPhi()~ handles the actual folding. In the end before it returs
+the new Instruction RAUW is called. 
+
