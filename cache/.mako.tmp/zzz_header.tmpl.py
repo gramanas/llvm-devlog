@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1533227348.3230667
+_modified_time = 1533227564.4119196
 _enable_loop = True
 _template_filename = 'themes/lotabout/templates/zzz_header.tmpl'
 _template_uri = 'zzz_header.tmpl'
@@ -44,10 +44,10 @@ def render_html_header(context):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        def html_site_title():
-            return render_html_site_title(context)
         def html_navigation_links():
             return render_html_navigation_links(context)
+        def html_site_title():
+            return render_html_site_title(context)
         __M_writer = context.writer()
         __M_writer('\n\n    <header id="header" class="header transparent">\n        <div class="container">\n            <div class="scroll top">\n                <a href=\'#\'><i class="icon-chevron-up icon-large"></i></a>\n            </div>\n\n            ')
         __M_writer(str(html_site_title()))
@@ -65,11 +65,11 @@ def render_html_site_title(context):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
-        logo_url = _import_ns.get('logo_url', context.get('logo_url', UNDEFINED))
+        abs_link = _import_ns.get('abs_link', context.get('abs_link', UNDEFINED))
         blog_description = _import_ns.get('blog_description', context.get('blog_description', UNDEFINED))
         blog_title = _import_ns.get('blog_title', context.get('blog_title', UNDEFINED))
-        abs_link = _import_ns.get('abs_link', context.get('abs_link', UNDEFINED))
         show_blog_title = _import_ns.get('show_blog_title', context.get('show_blog_title', UNDEFINED))
+        logo_url = _import_ns.get('logo_url', context.get('logo_url', UNDEFINED))
         __M_writer = context.writer()
         __M_writer('\n    <div class="brand">\n        <div class="flip_container">\n            <div class="flipper">\n                <div class="front">\n                    <p><a href="')
         __M_writer(str(abs_link('/')))
@@ -107,11 +107,11 @@ def render_html_navigation_links(context):
     try:
         _import_ns = {}
         _mako_get_namespace(context, 'base')._populate(_import_ns, ['*'])
+        navigation_links = _import_ns.get('navigation_links', context.get('navigation_links', UNDEFINED))
         lang = _import_ns.get('lang', context.get('lang', UNDEFINED))
+        rel_link = _import_ns.get('rel_link', context.get('rel_link', UNDEFINED))
         isinstance = _import_ns.get('isinstance', context.get('isinstance', UNDEFINED))
         template_hooks = _import_ns.get('template_hooks', context.get('template_hooks', UNDEFINED))
-        navigation_links = _import_ns.get('navigation_links', context.get('navigation_links', UNDEFINED))
-        rel_link = _import_ns.get('rel_link', context.get('rel_link', UNDEFINED))
         permalink = _import_ns.get('permalink', context.get('permalink', UNDEFINED))
         tuple = _import_ns.get('tuple', context.get('tuple', UNDEFINED))
         __M_writer = context.writer()

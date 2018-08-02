@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Thu, 02 Aug 2018 16:29:08 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Broken PC, LoopVectorize and Documentation</title><link>https://gramanas.github.io/posts/broken-pc-loopvectorize-and-documentation/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/llvm-devlog/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/llvm-devlog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Thu, 02 Aug 2018 16:32:44 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Broken PC, LoopVectorize and Documentation</title><link>https://gramanas.github.io/llvm-devlog/posts/broken-pc-loopvectorize-and-documentation/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 It has been quite some time since I last posted. 
 My computer has reached EOL and I am in the process
 of getting a new one up and running.
@@ -89,7 +89,7 @@ testing of such errors and hoping that future pass developers will
 have these in mind when desinging the transformations.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/broken-pc-loopvectorize-and-documentation/</guid><pubDate>Thu, 19 Jul 2018 15:06:41 GMT</pubDate></item><item><title>Finding and fixing DebugInfo related bugs</title><link>https://gramanas.github.io/posts/finding-and-fixing-debuginfo-related-bugs/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/broken-pc-loopvectorize-and-documentation/</guid><pubDate>Thu, 19 Jul 2018 15:06:41 GMT</pubDate></item><item><title>Finding and fixing DebugInfo related bugs</title><link>https://gramanas.github.io/llvm-devlog/posts/finding-and-fixing-debuginfo-related-bugs/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 The last few weeks that I haven't posted any updates have been pretty laborsome.
 &lt;/p&gt;
 
@@ -229,7 +229,7 @@ even if the file has many different tests.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/finding-and-fixing-debuginfo-related-bugs/</guid><pubDate>Fri, 29 Jun 2018 13:10:52 GMT</pubDate></item><item><title>InstCombine debugging reference</title><link>https://gramanas.github.io/posts/instcombine-debugging-reference/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/finding-and-fixing-debuginfo-related-bugs/</guid><pubDate>Fri, 29 Jun 2018 13:10:52 GMT</pubDate></item><item><title>InstCombine debugging reference</title><link>https://gramanas.github.io/llvm-devlog/posts/instcombine-debugging-reference/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 Instruction Combine is a crucial pass occurring in the middle of the pipeline.
 It consolidates redundant instructions and while doing that it doesn't always get
 the Debug Info right.
@@ -297,7 +297,7 @@ after running &lt;code&gt;instcombine&lt;/code&gt; on it.
 We are left with two dbg.value intrinsics missing.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/instcombine-debugging-reference/</guid><pubDate>Sat, 16 Jun 2018 09:08:31 GMT</pubDate></item><item><title>SROA debug experience and dexter thoughts</title><link>https://gramanas.github.io/posts/sroa-debug-experience-and-dexter-thoughts/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org6f46e3b" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/instcombine-debugging-reference/</guid><pubDate>Sat, 16 Jun 2018 09:08:31 GMT</pubDate></item><item><title>SROA debug experience and dexter thoughts</title><link>https://gramanas.github.io/llvm-devlog/posts/sroa-debug-experience-and-dexter-thoughts/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org6f46e3b" class="outline-2"&gt;
 &lt;h2 id="org6f46e3b"&gt;Introduction&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org6f46e3b"&gt;
 &lt;p&gt;
@@ -428,7 +428,7 @@ user experience but there is nothing that can be done about it as this is
 the nature of the transformation.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/sroa-debug-experience-and-dexter-thoughts/</guid><pubDate>Wed, 06 Jun 2018 14:00:29 GMT</pubDate></item><item><title>SROA on amalgamated sqlite source</title><link>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org378c6ad" class="outline-2"&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/sroa-debug-experience-and-dexter-thoughts/</guid><pubDate>Wed, 06 Jun 2018 14:00:29 GMT</pubDate></item><item><title>SROA on amalgamated sqlite source</title><link>https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org378c6ad" class="outline-2"&gt;
 &lt;h2 id="org378c6ad"&gt;Introduction&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-org378c6ad"&gt;
 &lt;p&gt;
@@ -538,7 +538,7 @@ Do you have any ideas as to why this happens?
 Can you confirm the results?
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</guid><pubDate>Wed, 30 May 2018 11:49:10 GMT</pubDate></item><item><title>Week 2</title><link>https://gramanas.github.io/posts/week-2/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/</guid><pubDate>Wed, 30 May 2018 11:49:10 GMT</pubDate></item><item><title>Week 2</title><link>https://gramanas.github.io/llvm-devlog/posts/week-2/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 This past days I focused on some missing Debug Loc that occurred at &lt;code&gt;store&lt;/code&gt; instructions
 at the function prologue.
 &lt;/p&gt;
@@ -587,7 +587,7 @@ Although &lt;code&gt;test1&lt;/code&gt; clearly shows a phi with missing debug L
 applied no longer has this problem. 
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/week-2/</guid><pubDate>Mon, 28 May 2018 15:11:00 GMT</pubDate></item><item><title>Week 1: debugify-each</title><link>https://gramanas.github.io/posts/week-1-debugify-each/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/week-2/</guid><pubDate>Mon, 28 May 2018 15:11:00 GMT</pubDate></item><item><title>Week 1: debugify-each</title><link>https://gramanas.github.io/llvm-devlog/posts/week-1-debugify-each/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 A first iteration of &lt;a href="https://reviews.llvm.org/D46525"&gt;Debugify-each&lt;/a&gt; has landed earlier this week. The tool works as expected
 but it's a bit rough around the edges.
 &lt;/p&gt;
@@ -611,7 +611,7 @@ This is not the correct way a tool like debugify should work. A user should be a
 pipe opt's output to other tools while also using debugify-each. To remedy this
 another &lt;a href="https://reviews.llvm.org/D46941"&gt;patch&lt;/a&gt; redirects the warnings and errors to &lt;code&gt;stderr&lt;/code&gt; and as a follow-up
 debugify should dump it's results to a file.
-&lt;/p&gt;</description><guid>https://gramanas.github.io/posts/week-1-debugify-each/</guid><pubDate>Wed, 16 May 2018 14:02:07 GMT</pubDate></item><item><title>Less than a week to go</title><link>https://gramanas.github.io/posts/less-that-a-week-to-go/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+&lt;/p&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/week-1-debugify-each/</guid><pubDate>Wed, 16 May 2018 14:02:07 GMT</pubDate></item><item><title>Less than a week to go</title><link>https://gramanas.github.io/llvm-devlog/posts/less-that-a-week-to-go/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 Less than a week remains until the coding period officially starts.
 Since the last post a few things changed. For starters I didn't
 get to implement the debugify-each mode cause someone else 
@@ -696,7 +696,7 @@ As much as I am scared of the vastness of the project I am also excited
 to have this chance to work with all these great developers.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/less-that-a-week-to-go/</guid><pubDate>Wed, 09 May 2018 23:42:17 GMT</pubDate></item><item><title>Community Bonding</title><link>https://gramanas.github.io/posts/community-bonding/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/less-that-a-week-to-go/</guid><pubDate>Wed, 09 May 2018 23:42:17 GMT</pubDate></item><item><title>Community Bonding</title><link>https://gramanas.github.io/llvm-devlog/posts/community-bonding/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 My proposal was accepted!
 &lt;/p&gt;
 
@@ -744,7 +744,7 @@ data serialization format, like JSON or YAML.
 More on that on a later post.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/community-bonding/</guid><pubDate>Wed, 25 Apr 2018 15:09:41 GMT</pubDate></item><item><title>Finding DebugInfo Loss</title><link>https://gramanas.github.io/posts/finding-debuginfo-loss/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/community-bonding/</guid><pubDate>Wed, 25 Apr 2018 15:09:41 GMT</pubDate></item><item><title>Finding DebugInfo Loss</title><link>https://gramanas.github.io/llvm-devlog/posts/finding-debuginfo-loss/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 In order to fix &lt;code&gt;DebugInfo&lt;/code&gt; loss I need to find where and when it occurs.
 Many transformations result in &lt;code&gt;DI&lt;/code&gt; loss due to the simple fact that they change
 and optimize code and thus the resulting llvm IR doesn't match the
@@ -816,4 +816,4 @@ CheckDebugify: FAIL
 -------
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/posts/finding-debuginfo-loss/</guid><pubDate>Tue, 27 Mar 2018 12:51:52 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/finding-debuginfo-loss/</guid><pubDate>Tue, 27 Mar 2018 12:51:52 GMT</pubDate></item></channel></rss>

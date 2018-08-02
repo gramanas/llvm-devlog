@@ -6,79 +6,75 @@
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
-  <loc>https://gramanas.github.io/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/</loc>
   <lastmod>2018-08-02T16:25:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/2018/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/2018/</loc>
   <lastmod>2018-07-27T05:43:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/archive.html</loc>
-  <lastmod>2018-08-02T16:29:00Z</lastmod>
+  <loc>https://gramanas.github.io/llvm-devlog/archive.html</loc>
+  <lastmod>2018-08-02T16:32:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/categories/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/categories/</loc>
   <lastmod>2018-07-27T05:43:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/galleries/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/galleries/</loc>
   <lastmod>2018-08-02T16:25:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/listings/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/listings/</loc>
   <lastmod>2018-08-02T16:25:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/broken-pc-loopvectorize-and-documentation/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/broken-pc-loopvectorize-and-documentation/</loc>
   <lastmod>2018-07-27T05:43:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/community-bonding/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/community-bonding/</loc>
   <lastmod>2018-05-03T07:58:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/compiling-llvm/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/compiling-llvm/</loc>
   <lastmod>2018-07-27T05:43:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/debug-information/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/debug-information/</loc>
   <lastmod>2018-07-27T05:43:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/finding-and-fixing-debuginfo-related-bugs/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/finding-and-fixing-debuginfo-related-bugs/</loc>
   <lastmod>2018-07-27T05:43:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/finding-debuginfo-loss/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/finding-debuginfo-loss/</loc>
   <lastmod>2018-07-27T05:43:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/instcombine-debugging-reference/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/instcombine-debugging-reference/</loc>
   <lastmod>2018-06-16T09:22:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/less-that-a-week-to-go/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/less-that-a-week-to-go/</loc>
   <lastmod>2018-05-10T00:29:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/sroa-debug-experience-and-dexter-thoughts/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/sroa-debug-experience-and-dexter-thoughts/</loc>
   <lastmod>2018-06-08T14:53:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/sroa-on-amalgamated-sqlite-source/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/</loc>
   <lastmod>2018-05-30T11:50:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/title/</loc>
-  <lastmod>2018-08-02T16:25:00Z</lastmod>
- </url>
- <url>
-  <loc>https://gramanas.github.io/posts/week-1-debugify-each/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/week-1-debugify-each/</loc>
   <lastmod>2018-05-16T14:55:00Z</lastmod>
  </url>
  <url>
-  <loc>https://gramanas.github.io/posts/week-2/</loc>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/week-2/</loc>
   <lastmod>2018-05-28T15:27:00Z</lastmod>
  </url>
 </urlset>
