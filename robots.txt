@@ -1,4 +1,4 @@
-Sitemap: https://gramanas.github.io/sitemapindex.xml
+Sitemap: https://gramanas.github.io/llvm-devlog/sitemapindex.xml
 
 User-Agent: *
 Host: gramanas.github.io
