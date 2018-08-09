@@ -15,7 +15,7 @@
  </url>
  <url>
   <loc>https://gramanas.github.io/llvm-devlog/archive.html</loc>
-  <lastmod>2018-08-06T16:35:00Z</lastmod>
+  <lastmod>2018-08-09T13:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/llvm-devlog/categories/</loc>
@@ -56,6 +56,10 @@
  <url>
   <loc>https://gramanas.github.io/llvm-devlog/posts/finding-debuginfo-loss/</loc>
   <lastmod>2018-07-27T05:43:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://gramanas.github.io/llvm-devlog/posts/gsoc-2018-improving-debugging-of-optimized-code/</loc>
+  <lastmod>2018-08-09T13:57:00Z</lastmod>
  </url>
  <url>
   <loc>https://gramanas.github.io/llvm-devlog/posts/instcombine-debugging-reference/</loc>

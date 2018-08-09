@@ -1,0 +1,146 @@
+<div id="outline-container-org8e28e38" class="outline-2">
+<h2 id="org8e28e38">GSoC 2018 recap</h2>
+<div class="outline-text-2" id="text-org8e28e38">
+<p>
+As the 3 month working period is coming to an end, I can
+look back at all the things I've learned this past few months.
+</p>
+
+<p>
+This is my second GSoC so from the first time I laid eyes on the
+projects, I knew I wanted something challenging and fun, as it
+usually turns out that in order to really learn something you need to
+throw yourself into deep waters. That's when I stumbled to
+llvm's project suggestions, and I knew that it would be either
+this or nothing. There were some other interesting and huge projects
+like git and gcc but since my C++ is way better than my C I figured
+I'd give llvm a shot. I chose a project that made more sense to me and
+would allow me to learn as much as possible. 
+</p>
+
+<p>
+Improving debugging of optimized code turned out to be exactly what
+I wanted. Throughout the summer I read about many transformations and
+optimizations, skimmed through many parts of the code-base and 
+acquired tons of new knowledge about compilers and how debugging works.
+</p>
+
+<p>
+I didn't get to write as much code as I would have wanted, but that was
+due to the fact that for every new bug I faced I would read about the
+transformation, how and why it occurred and what steps were required to
+fix it.
+</p>
+
+<p>
+Another very valuable experience was that of simply committing a change
+to the project. All the intricate developer tools I've never used before
+and the non-stop stream of commits coming from other developers
+reflected a professional production environment. Adjusting to it wasn't 
+easy by any means. Every change I would make to phabricator would get emailed
+to countess other devs and that alone was enough to have me stressing over every single
+detail (ofc I couldn't avoid typos and silly mistakes!).
+By the end of the first month and some commits later, it was much easier
+and I got to appreciate the thorough review process.
+</p>
+
+<p>
+The vastness of the project was really noticeable by the testing infrastructure.
+Every single change required a regression or unit test to ensure it wouldn't break
+later, and testing turned out to be one of the better tools a llvm dev has
+in his possession to counter bugs and introduce new features.
+</p>
+
+<p>
+The whole experience was extremely instructive and I am pleased to have
+made it this far.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc9b3caf" class="outline-2">
+<h2 id="orgc9b3caf">The work I've done</h2>
+<div class="outline-text-2" id="text-orgc9b3caf">
+<p>
+I've been keeping a dev-log in this <a href="https://gramanas.github.io/llvm-devlog/">blog</a>.
+</p>
+
+<p>
+I started by getting accustomed to debugify, a utility Vedant wrote to
+assist with finding debug info loss. Greg assisted later by filing many
+bugs and grouping them all <a href="https://bugs.llvm.org/show_bug.cgi?id=37953">here</a>.
+</p>
+
+<p>
+Then I started working on fixing some SROA bugs. SROA being a very
+early transformation was especially important to have as few DI bugs as
+possible. It is a very complex transformation, and as it was still early days I
+didn't know my way around the code which made it even harder. I posted
+the results of that encounter <a href="https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/">here</a> and informed the community through the mailing list.
+</p>
+
+<p>
+A few bugs turned out to be clang bugs and not llvm's. So I send a couple of patches
+over there as well.
+</p>
+
+<p>
+Then came time for another very important transformation, Instruction Combining.
+The nature of this transformation made it really hard to work with. Since it
+eliminates instructions and combines others keeping track of the debug info
+is especially difficult.
+</p>
+
+<p>
+At that point I had to learn more about <a href="http://www.dwarfstd.org/doc/Debugging%20using%20DWARF-2012.pdf">DWARF</a>.
+</p>
+
+<p>
+Then I proceeded with other bugs Greg reported and I also wrote
+some <a href="https://llvm.org/docs/SourceLevelDebugging.html#testing-debug-info-preservation-in-optimizations">documentation</a> about the way I've been testing for bugs using debugify.
+Around this time my PC failed me and I had to get a new one. Thankfully I
+had a VPS from my university that I was able to use while waiting for the new
+PC, but that came with a significant amount of time wasted on setting up
+a dev environment.
+</p>
+
+<p>
+Here are the patches that made it to trunk:
+</p>
+
+<ul class="org-ul">
+<li>[LICM] <a href="https://reviews.llvm.org/rL327800">Salvage DI from dying Instructions</a></li>
+<li>[Debugfiy] <a href="https://reviews.llvm.org/rL332416">Print the pass name next to the result</a></li>
+<li>[Debugify] <a href="https://reviews.llvm.org/rL332418">Fix test failing after r332416</a></li>
+<li>[Debugify] <a href="https://reviews.llvm.org/rL332642">Print the output to stderr</a></li>
+<li>[DebugInfo] <a href="https://reviews.llvm.org/rC335255">Inline for without DebugLocation</a></li>
+<li>[SROA] <a href="https://reviews.llvm.org/rL335904">Preserve DebugLoc when rewriting alloca partitions</a></li>
+<li>[DebugInfo][InstCombine] <a href="https://reviews.llvm.org/rL336254">Preserve DI after combining zext</a></li>
+<li>[DebugInfo][LoopVectorize] <a href="https://reviews.llvm.org/rL336256">Preserve DL in generated phi instruction</a></li>
+<li>[DebugInfo][LoopVectorize] <a href="https://reviews.llvm.org/rL336667">Preserve DL in induction PHI and Add</a></li>
+<li>[Docs] <a href="https://reviews.llvm.org/rL337457">Testing Debug Info Preservation in Optimizations</a></li>
+<li>[LV][DebugInfo] <a href="https://reviews.llvm.org/rL338106">Set DL to the middle block Icmp instruction</a></li>
+<li>Revert "[LV][DebugInfo] <a href="https://reviews.llvm.org/rL338109">Set DL to the middle block Icmp instruction"</a></li>
+<li>[DebugInfo][LCSSA] <a href="https://reviews.llvm.org/rL338391">Preserve debug location in lcssa phis</a></li>
+<li>[TRE][DebugInfo] <a href="https://reviews.llvm.org/rL338917">Preserve Debug Location in new branch instruction</a></li>
+<li>[Local] <a href="https://reviews.llvm.org/rL339173">Add dbg location on unreachable inst in changeToUnreachable</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4134da0" class="outline-2">
+<h2 id="org4134da0">Conclusion</h2>
+<div class="outline-text-2" id="text-org4134da0">
+<p>
+I consider this one of the most valuable experiences I've ever had.
+I learned an enormous amount of new stuff and I got a very good
+picture of how things work on a professional environment.
+</p>
+
+<p>
+My mentor, Vedant, was really helpful and provided many useful insides
+and tricks to ease the development process. He was very responsive and
+quick on reviewing my changes and helped me all the way.
+</p>
+</div>
+</div>

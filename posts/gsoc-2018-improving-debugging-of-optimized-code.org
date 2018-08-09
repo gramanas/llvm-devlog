@@ -1,0 +1,113 @@
+#+BEGIN_COMMENT
+.. title: GSoC 2018 - Improving Debugging of Optimized Code
+.. slug: gsoc-2018-improving-debugging-of-optimized-code
+.. date: 2018-08-09 15:39:28 UTC+03:00
+.. tags: 
+.. category: 
+.. link: 
+.. description: 
+.. type: text
+#+END_COMMENT
+
+
+* GSoC 2018 recap
+
+As the 3 month working period is coming to an end, I can
+look back at all the things I've learned this past few months.
+
+This is my second GSoC so from the first time I laid eyes on the
+projects, I knew I wanted something challenging and fun, as it
+usually turns out that in order to really learn something you need to
+throw yourself into deep waters. That's when I stumbled to
+llvm's project suggestions, and I knew that it would be either
+this or nothing. There were some other interesting and huge projects
+like git and gcc but since my C++ is way better than my C I figured
+I'd give llvm a shot. I chose a project that made more sense to me and
+would allow me to learn as much as possible. 
+
+Improving debugging of optimized code turned out to be exactly what
+I wanted. Throughout the summer I read about many transformations and
+optimizations, skimmed through many parts of the code-base and 
+acquired tons of new knowledge about compilers and how debugging works.
+
+I didn't get to write as much code as I would have wanted, but that was
+due to the fact that for every new bug I faced I would read about the
+transformation, how and why it occurred and what steps were required to
+fix it.
+
+Another very valuable experience was that of simply committing a change
+to the project. All the intricate developer tools I've never used before
+and the non-stop stream of commits coming from other developers
+reflected a professional production environment. Adjusting to it wasn't 
+easy by any means. Every change I would make to phabricator would get emailed
+to countess other devs and that alone was enough to have me stressing over every single
+detail (ofc I couldn't avoid typos and silly mistakes!).
+By the end of the first month and some commits later, it was much easier
+and I got to appreciate the thorough review process.
+
+The vastness of the project was really noticeable by the testing infrastructure.
+Every single change required a regression or unit test to ensure it wouldn't break
+later, and testing turned out to be one of the better tools a llvm dev has
+in his possession to counter bugs and introduce new features.
+
+The whole experience was extremely instructive and I am pleased to have
+made it this far.
+
+* The work I've done
+
+I've been keeping a dev-log in this [[https://gramanas.github.io/llvm-devlog/][blog]].
+
+I started by getting accustomed to debugify, a utility Vedant wrote to
+assist with finding debug info loss. Greg assisted later by filing many
+bugs and grouping them all [[https://bugs.llvm.org/show_bug.cgi?id=37953][here]].
+
+Then I started working on fixing some SROA bugs. SROA being a very
+early transformation was especially important to have as few DI bugs as
+possible. It is a very complex transformation, and as it was still early days I
+didn't know my way around the code which made it even harder. I posted
+the results of that encounter [[https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/][here]] and informed the community through the mailing list.
+
+A few bugs turned out to be clang bugs and not llvm's. So I send a couple of patches
+over there as well.
+
+Then came time for another very important transformation, Instruction Combining.
+The nature of this transformation made it really hard to work with. Since it
+eliminates instructions and combines others keeping track of the debug info
+is especially difficult.
+
+At that point I had to learn more about [[http://www.dwarfstd.org/doc/Debugging%20using%20DWARF-2012.pdf][DWARF]].
+
+Then I proceeded with other bugs Greg reported and I also wrote
+some [[https://llvm.org/docs/SourceLevelDebugging.html#testing-debug-info-preservation-in-optimizations][documentation]] about the way I've been testing for bugs using debugify.
+Around this time my PC failed me and I had to get a new one. Thankfully I
+had a VPS from my university that I was able to use while waiting for the new
+PC, but that came with a significant amount of time wasted on setting up
+a dev environment.
+
+Here are the patches that made it to trunk:
+
+ - [LICM] [[https://reviews.llvm.org/rL327800][Salvage DI from dying Instructions]]
+ - [Debugfiy] [[https://reviews.llvm.org/rL332416][Print the pass name next to the result]]
+ - [Debugify] [[https://reviews.llvm.org/rL332418][Fix test failing after r332416]]
+ - [Debugify] [[https://reviews.llvm.org/rL332642][Print the output to stderr]]
+ - [DebugInfo] [[https://reviews.llvm.org/rC335255][Inline for without DebugLocation]]
+ - [SROA] [[https://reviews.llvm.org/rL335904][Preserve DebugLoc when rewriting alloca partitions]]
+ - [DebugInfo][InstCombine] [[https://reviews.llvm.org/rL336254][Preserve DI after combining zext]]
+ - [DebugInfo][LoopVectorize] [[https://reviews.llvm.org/rL336256][Preserve DL in generated phi instruction]]
+ - [DebugInfo][LoopVectorize] [[https://reviews.llvm.org/rL336667][Preserve DL in induction PHI and Add]]
+ - [Docs] [[https://reviews.llvm.org/rL337457][Testing Debug Info Preservation in Optimizations]]
+ - [LV][DebugInfo] [[https://reviews.llvm.org/rL338106][Set DL to the middle block Icmp instruction]]
+ - Revert "[LV][DebugInfo] [[https://reviews.llvm.org/rL338109][Set DL to the middle block Icmp instruction"]]
+ - [DebugInfo][LCSSA] [[https://reviews.llvm.org/rL338391][Preserve debug location in lcssa phis]]
+ - [TRE][DebugInfo] [[https://reviews.llvm.org/rL338917][Preserve Debug Location in new branch instruction]]
+ - [Local] [[https://reviews.llvm.org/rL339173][Add dbg location on unreachable inst in changeToUnreachable]]
+
+* Conclusion
+
+I consider this one of the most valuable experiences I've ever had.
+I learned an enormous amount of new stuff and I got a very good
+picture of how things work on a professional environment.
+
+My mentor, Vedant, was really helpful and provided many useful insides
+and tricks to ease the development process. He was very responsive and
+quick on reviewing my changes and helped me all the way.
