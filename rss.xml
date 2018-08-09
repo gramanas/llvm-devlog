@@ -1,5 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/llvm-devlog/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/llvm-devlog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Mon, 06 Aug 2018 16:41:49 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Final Week</title><link>https://gramanas.github.io/llvm-devlog/posts/final-week/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/llvm-devlog/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/llvm-devlog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Thu, 09 Aug 2018 15:18:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2018 - Improving Debugging of Optimized Code</title><link>https://gramanas.github.io/llvm-devlog/posts/gsoc-2018-improving-debugging-of-optimized-code/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org8e28e38" class="outline-2"&gt;
+&lt;h2 id="org8e28e38"&gt;GSoC 2018 recap&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8e28e38"&gt;
+&lt;p&gt;
+As the 3 month working period is coming to an end, I can
+look back at all the things I've learned this past few months.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is my second GSoC so from the first time I laid eyes on the
+projects, I knew I wanted something challenging and fun, as it
+usually turns out that in order to really learn something you need to
+throw yourself into deep waters. That's when I stumbled to
+llvm's project suggestions, and I knew that it would be either
+this or nothing. There were some other interesting and huge projects
+like git and gcc but since my C++ is way better than my C I figured
+I'd give llvm a shot. I chose a project that made more sense to me and
+would allow me to learn as much as possible. 
+&lt;/p&gt;
+
+&lt;p&gt;
+Improving debugging of optimized code turned out to be exactly what
+I wanted. Throughout the summer I read about many transformations and
+optimizations, skimmed through many parts of the code-base and 
+acquired tons of new knowledge about compilers and how debugging works.
+&lt;/p&gt;
+
+&lt;p&gt;
+I didn't get to write as much code as I would have wanted, but that was
+due to the fact that for every new bug I faced I would read about the
+transformation, how and why it occurred and what steps were required to
+fix it.
+&lt;/p&gt;
+
+&lt;p&gt;
+Another very valuable experience was that of simply committing a change
+to the project. All the intricate developer tools I've never used before
+and the non-stop stream of commits coming from other developers
+reflected a professional production environment. Adjusting to it wasn't 
+easy by any means. Every change I would make to phabricator would get emailed
+to countess other devs and that alone was enough to have me stressing over every single
+detail (ofc I couldn't avoid typos and silly mistakes!).
+By the end of the first month and some commits later, it was much easier
+and I got to appreciate the thorough review process.
+&lt;/p&gt;
+
+&lt;p&gt;
+The vastness of the project was really noticeable by the testing infrastructure.
+Every single change required a regression or unit test to ensure it wouldn't break
+later, and testing turned out to be one of the better tools a llvm dev has
+in his possession to counter bugs and introduce new features.
+&lt;/p&gt;
+
+&lt;p&gt;
+The whole experience was extremely instructive and I am pleased to have
+made it this far.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc9b3caf" class="outline-2"&gt;
+&lt;h2 id="orgc9b3caf"&gt;The work I've done&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc9b3caf"&gt;
+&lt;p&gt;
+I've been keeping a dev-log in this &lt;a href="https://gramanas.github.io/llvm-devlog/"&gt;blog&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+I started by getting accustomed to debugify, a utility Vedant wrote to
+assist with finding debug info loss. Greg assisted later by filing many
+bugs and grouping them all &lt;a href="https://bugs.llvm.org/show_bug.cgi?id=37953"&gt;here&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Then I started working on fixing some SROA bugs. SROA being a very
+early transformation was especially important to have as few DI bugs as
+possible. It is a very complex transformation, and as it was still early days I
+didn't know my way around the code which made it even harder. I posted
+the results of that encounter &lt;a href="https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/"&gt;here&lt;/a&gt; and informed the community through the mailing list.
+&lt;/p&gt;
+
+&lt;p&gt;
+A few bugs turned out to be clang bugs and not llvm's. So I send a couple of patches
+over there as well.
+&lt;/p&gt;
+
+&lt;p&gt;
+Then came time for another very important transformation, Instruction Combining.
+The nature of this transformation made it really hard to work with. Since it
+eliminates instructions and combines others keeping track of the debug info
+is especially difficult.
+&lt;/p&gt;
+
+&lt;p&gt;
+At that point I had to learn more about &lt;a href="http://www.dwarfstd.org/doc/Debugging%20using%20DWARF-2012.pdf"&gt;DWARF&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+Then I proceeded with other bugs Greg reported and I also wrote
+some &lt;a href="https://llvm.org/docs/SourceLevelDebugging.html#testing-debug-info-preservation-in-optimizations"&gt;documentation&lt;/a&gt; about the way I've been testing for bugs using debugify.
+Around this time my PC failed me and I had to get a new one. Thankfully I
+had a VPS from my university that I was able to use while waiting for the new
+PC, but that came with a significant amount of time wasted on setting up
+a dev environment.
+&lt;/p&gt;
+
+&lt;p&gt;
+Here are the patches that made it to trunk:
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;[LICM] &lt;a href="https://reviews.llvm.org/rL327800"&gt;Salvage DI from dying Instructions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Debugfiy] &lt;a href="https://reviews.llvm.org/rL332416"&gt;Print the pass name next to the result&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Debugify] &lt;a href="https://reviews.llvm.org/rL332418"&gt;Fix test failing after r332416&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Debugify] &lt;a href="https://reviews.llvm.org/rL332642"&gt;Print the output to stderr&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[DebugInfo] &lt;a href="https://reviews.llvm.org/rC335255"&gt;Inline for without DebugLocation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[SROA] &lt;a href="https://reviews.llvm.org/rL335904"&gt;Preserve DebugLoc when rewriting alloca partitions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[DebugInfo][InstCombine] &lt;a href="https://reviews.llvm.org/rL336254"&gt;Preserve DI after combining zext&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[DebugInfo][LoopVectorize] &lt;a href="https://reviews.llvm.org/rL336256"&gt;Preserve DL in generated phi instruction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[DebugInfo][LoopVectorize] &lt;a href="https://reviews.llvm.org/rL336667"&gt;Preserve DL in induction PHI and Add&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Docs] &lt;a href="https://reviews.llvm.org/rL337457"&gt;Testing Debug Info Preservation in Optimizations&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[LV][DebugInfo] &lt;a href="https://reviews.llvm.org/rL338106"&gt;Set DL to the middle block Icmp instruction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Revert "[LV][DebugInfo] &lt;a href="https://reviews.llvm.org/rL338109"&gt;Set DL to the middle block Icmp instruction"&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[DebugInfo][LCSSA] &lt;a href="https://reviews.llvm.org/rL338391"&gt;Preserve debug location in lcssa phis&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[TRE][DebugInfo] &lt;a href="https://reviews.llvm.org/rL338917"&gt;Preserve Debug Location in new branch instruction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[Local] &lt;a href="https://reviews.llvm.org/rL339173"&gt;Add dbg location on unreachable inst in changeToUnreachable&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4134da0" class="outline-2"&gt;
+&lt;h2 id="org4134da0"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4134da0"&gt;
+&lt;p&gt;
+I consider this one of the most valuable experiences I've ever had.
+I learned an enormous amount of new stuff and I got a very good
+picture of how things work on a professional environment.
+&lt;/p&gt;
+
+&lt;p&gt;
+My mentor, Vedant, was really helpful and provided many useful insides
+and tricks to ease the development process. He was very responsive and
+quick on reviewing my changes and helped me all the way.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/gsoc-2018-improving-debugging-of-optimized-code/</guid><pubDate>Thu, 09 Aug 2018 12:39:28 GMT</pubDate></item><item><title>Final Week</title><link>https://gramanas.github.io/llvm-devlog/posts/final-week/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
 As the final week started and the evaluations are now open, I will
 sum my work to another post that will be the final link to be submitted.
 &lt;/p&gt;
@@ -456,9 +601,9 @@ user experience but there is nothing that can be done about it as this is
 the nature of the transformation.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/sroa-debug-experience-and-dexter-thoughts/</guid><pubDate>Wed, 06 Jun 2018 14:00:29 GMT</pubDate></item><item><title>SROA on amalgamated sqlite source</title><link>https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org378c6ad" class="outline-2"&gt;
-&lt;h2 id="org378c6ad"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org378c6ad"&gt;
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/sroa-debug-experience-and-dexter-thoughts/</guid><pubDate>Wed, 06 Jun 2018 14:00:29 GMT</pubDate></item><item><title>SROA on amalgamated sqlite source</title><link>https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-orgf01c275" class="outline-2"&gt;
+&lt;h2 id="orgf01c275"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf01c275"&gt;
 &lt;p&gt;
 &lt;code&gt;SROA&lt;/code&gt; is an early stage pass running at the very beginning of the pipeline in &lt;code&gt;-O{1,2,3}&lt;/code&gt;.
 Greg Bedwell's report from his DExTer tool shows SROA on function as one of the major
@@ -481,11 +626,11 @@ opt -sroa -debugify-each sqlite -disable-output &lt;span class="m"&gt;2&lt;/span
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4c1bdb0" class="outline-2"&gt;
-&lt;h2 id="org4c1bdb0"&gt;Results&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4c1bdb0"&gt;
+&lt;div id="outline-container-orgbe9da21" class="outline-2"&gt;
+&lt;h2 id="orgbe9da21"&gt;Results&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbe9da21"&gt;
 &lt;p&gt;
-&lt;a href="https://gramanas.github.io/sroa-results.csv"&gt;Here&lt;/a&gt; is the full results file.
+&lt;a href="https://gramanas.github.io/llvm-devlog/sroa-results.csv"&gt;Here&lt;/a&gt; is the full results file.
 &lt;/p&gt;
 
 &lt;p&gt;
@@ -548,9 +693,9 @@ the instructions with missing Debug Loc are &lt;code&gt;phi&lt;/code&gt; instruc
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orge1b8157" class="outline-2"&gt;
-&lt;h2 id="orge1b8157"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orge1b8157"&gt;
+&lt;div id="outline-container-orgd170c9c" class="outline-2"&gt;
+&lt;h2 id="orgd170c9c"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd170c9c"&gt;
 &lt;p&gt;
 This implies SROA does a pretty good job of preserving debug values.
 &lt;/p&gt;
@@ -724,52 +869,4 @@ As much as I am scared of the vastness of the project I am also excited
 to have this chance to work with all these great developers.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/less-that-a-week-to-go/</guid><pubDate>Wed, 09 May 2018 23:42:17 GMT</pubDate></item><item><title>Community Bonding</title><link>https://gramanas.github.io/llvm-devlog/posts/community-bonding/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;p&gt;
-My proposal was accepted!
-&lt;/p&gt;
-
-&lt;p&gt;
-For the next few days it's the community bonding period. I will take advantage
-of this time to let the community know about my project and it's goals, as well
-as get a head start on the coding period.
-&lt;/p&gt;
-
-&lt;div id="outline-container-sec-1" class="outline-2"&gt;
-&lt;h2 id="sec-1"&gt;Starting the project&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-1"&gt;
-&lt;p&gt;
-The first step to improving the debugging of optimized code is to measure
-where we lose Debug information.
-Verdant has already created the tool to do that. It's the &lt;a href="https://reviews.llvm.org/D40512"&gt;debugify mode&lt;/a&gt;.
-Currently &lt;code&gt;debugify&lt;/code&gt; is a &lt;code&gt;ModulePass&lt;/code&gt; and works like &lt;a href="https://gramanas.github.io/posts/finding-debuginfo-loss/"&gt;that&lt;/a&gt;. 
-It needs to be refactored into a &lt;code&gt;FunctionPass&lt;/code&gt; while keeping the
-same underlying logic. That way it will be managed from the &lt;code&gt;FunctionPassManager&lt;/code&gt;.
-&lt;/p&gt;
-
-&lt;p&gt;
-Next the opt tool should have a custom &lt;code&gt;PassManager&lt;/code&gt; that injects the new
-debugify before a pass and then the new check-debugify after it. This will
-be a new mode called debugify-each. It will basically gather DI loss from
-every pass in the pipeline.
-&lt;/p&gt;
-
-&lt;p&gt;
-&lt;code&gt;Debugify&lt;/code&gt; as &lt;code&gt;ModulePass&lt;/code&gt; will still be available but it will be a wrapper
-around the &lt;code&gt;FunctionPass&lt;/code&gt; one.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div id="outline-container-sec-2" class="outline-2"&gt;
-&lt;h2 id="sec-2"&gt;OK, I got the data. Now what?&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-2"&gt;
-&lt;p&gt;
-The resulting DI loss occurrences will be stored into some kind of human readable
-data serialization format, like JSON or YAML.
-&lt;/p&gt;
-
-&lt;p&gt;
-More on that on a later post.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/community-bonding/</guid><pubDate>Wed, 25 Apr 2018 15:09:41 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><guid>https://gramanas.github.io/llvm-devlog/posts/less-that-a-week-to-go/</guid><pubDate>Wed, 09 May 2018 23:42:17 GMT</pubDate></item></channel></rss>
