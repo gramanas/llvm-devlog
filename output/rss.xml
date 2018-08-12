@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/llvm-devlog/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/llvm-devlog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Thu, 09 Aug 2018 15:18:25 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2018 - Improving Debugging of Optimized Code</title><link>https://gramanas.github.io/llvm-devlog/posts/gsoc-2018-improving-debugging-of-optimized-code/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org8e28e38" class="outline-2"&gt;
-&lt;h2 id="org8e28e38"&gt;GSoC 2018 recap&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8e28e38"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>gramanas &gt;&gt; blog</title><link>https://gramanas.github.io/llvm-devlog/</link><description>LLVM development log for GSoC 2018</description><atom:link href="https://gramanas.github.io/llvm-devlog/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:anastasis.gramm2@gmail.com"&gt;Anastasis Grammenos&lt;/a&gt; </copyright><lastBuildDate>Sun, 12 Aug 2018 21:35:01 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GSoC 2018 - Improving Debugging of Optimized Code</title><link>https://gramanas.github.io/llvm-devlog/posts/gsoc-2018-improving-debugging-of-optimized-code/</link><dc:creator>Anastasis Grammenos</dc:creator><description>&lt;div id="outline-container-org7e7b8fa" class="outline-2"&gt;
+&lt;h2 id="org7e7b8fa"&gt;GSoC 2018 recap&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7e7b8fa"&gt;
 &lt;p&gt;
 As the 3 month working period is coming to an end, I can
 look back at all the things I've learned this past few months.
@@ -39,7 +39,7 @@ to the project. All the intricate developer tools I've never used before
 and the non-stop stream of commits coming from other developers
 reflected a professional production environment. Adjusting to it wasn't 
 easy by any means. Every change I would make to phabricator would get emailed
-to countess other devs and that alone was enough to have me stressing over every single
+to countless other devs and that alone was enough to have me stressing over every single
 detail (ofc I couldn't avoid typos and silly mistakes!).
 By the end of the first month and some commits later, it was much easier
 and I got to appreciate the thorough review process.
@@ -59,9 +59,9 @@ made it this far.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc9b3caf" class="outline-2"&gt;
-&lt;h2 id="orgc9b3caf"&gt;The work I've done&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgc9b3caf"&gt;
+&lt;div id="outline-container-org88dae01" class="outline-2"&gt;
+&lt;h2 id="org88dae01"&gt;The work I've done&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org88dae01"&gt;
 &lt;p&gt;
 I've been keeping a dev-log in this &lt;a href="https://gramanas.github.io/llvm-devlog/"&gt;blog&lt;/a&gt;.
 &lt;/p&gt;
@@ -129,9 +129,9 @@ Here are the patches that made it to trunk:
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4134da0" class="outline-2"&gt;
-&lt;h2 id="org4134da0"&gt;Conclusion&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4134da0"&gt;
+&lt;div id="outline-container-org379ec06" class="outline-2"&gt;
+&lt;h2 id="org379ec06"&gt;Conclusion&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org379ec06"&gt;
 &lt;p&gt;
 I consider this one of the most valuable experiences I've ever had.
 I learned an enormous amount of new stuff and I got a very good

@@ -40,7 +40,7 @@ to the project. All the intricate developer tools I've never used before
 and the non-stop stream of commits coming from other developers
 reflected a professional production environment. Adjusting to it wasn't 
 easy by any means. Every change I would make to phabricator would get emailed
-to countess other devs and that alone was enough to have me stressing over every single
+to countless other devs and that alone was enough to have me stressing over every single
 detail (ofc I couldn't avoid typos and silly mistakes!).
 By the end of the first month and some commits later, it was much easier
 and I got to appreciate the thorough review process.

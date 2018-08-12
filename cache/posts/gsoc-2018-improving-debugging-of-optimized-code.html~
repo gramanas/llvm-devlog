@@ -1,6 +1,6 @@
-<div id="outline-container-orge89debd" class="outline-2">
-<h2 id="orge89debd">GSoC 2018 recap</h2>
-<div class="outline-text-2" id="text-orge89debd">
+<div id="outline-container-org8e28e38" class="outline-2">
+<h2 id="org8e28e38">GSoC 2018 recap</h2>
+<div class="outline-text-2" id="text-org8e28e38">
 <p>
 As the 3 month working period is coming to an end, I can
 look back at all the things I've learned this past few months.
@@ -58,9 +58,9 @@ made it this far.
 </div>
 </div>
 
-<div id="outline-container-org0aa87bd" class="outline-2">
-<h2 id="org0aa87bd">The work I've done</h2>
-<div class="outline-text-2" id="text-org0aa87bd">
+<div id="outline-container-orgc9b3caf" class="outline-2">
+<h2 id="orgc9b3caf">The work I've done</h2>
+<div class="outline-text-2" id="text-orgc9b3caf">
 <p>
 I've been keeping a dev-log in this <a href="https://gramanas.github.io/llvm-devlog/">blog</a>.
 </p>
@@ -73,10 +73,10 @@ bugs and grouping them all <a href="https://bugs.llvm.org/show_bug.cgi?id=37953"
 
 <p>
 Then I started working on fixing some SROA bugs. SROA being a very
-early transfomration was especially important to have as few DI bugs as
+early transformation was especially important to have as few DI bugs as
 possible. It is a very complex transformation, and as it was still early days I
 didn't know my way around the code which made it even harder. I posted
-the resutls of that encounter <a href="https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/">here</a> and informed the community through the mailing list.
+the results of that encounter <a href="https://gramanas.github.io/llvm-devlog/posts/sroa-on-amalgamated-sqlite-source/">here</a> and informed the community through the mailing list.
 </p>
 
 <p>
@@ -88,7 +88,7 @@ over there as well.
 Then came time for another very important transformation, Instruction Combining.
 The nature of this transformation made it really hard to work with. Since it
 eliminates instructions and combines others keeping track of the debug info
-is especially dificult.
+is especially difficult.
 </p>
 
 <p>
@@ -96,10 +96,10 @@ At that point I had to learn more about <a href="http://www.dwarfstd.org/doc/Deb
 </p>
 
 <p>
-Then I procceeded with other bugs greg reported and I also wrote
+Then I proceeded with other bugs Greg reported and I also wrote
 some <a href="https://llvm.org/docs/SourceLevelDebugging.html#testing-debug-info-preservation-in-optimizations">documentation</a> about the way I've been testing for bugs using debugify.
 Around this time my PC failed me and I had to get a new one. Thankfully I
-had a VPS from my univesity that I was able to use while wating for the new
+had a VPS from my university that I was able to use while waiting for the new
 PC, but that came with a significant amount of time wasted on setting up
 a dev environment.
 </p>
@@ -128,12 +128,12 @@ Here are the patches that made it to trunk:
 </div>
 </div>
 
-<div id="outline-container-org017b64f" class="outline-2">
-<h2 id="org017b64f">Conclusion</h2>
-<div class="outline-text-2" id="text-org017b64f">
+<div id="outline-container-org4134da0" class="outline-2">
+<h2 id="org4134da0">Conclusion</h2>
+<div class="outline-text-2" id="text-org4134da0">
 <p>
-I consider this one of the most valuable experiances I've ever had.
-I learned an enourmous amount of new stuff and I got a very good
+I consider this one of the most valuable experiences I've ever had.
+I learned an enormous amount of new stuff and I got a very good
 picture of how things work on a professional environment.
 </p>
 
